@@ -19,5 +19,4 @@ public class MainController {
     void startGuest(MouseEvent event) {
     	System.out.println("Guest Started");
     }
-
 }
