@@ -17,16 +17,16 @@
         <menus>
           <Menu mnemonicParsing="false" style="-fx-font-size: 16;" text="Admin">
             <items>
-              <MenuItem fx:id="adminLoginMenu" mnemonicParsing="false" onAction="#startAdmin" text="Login" />
+              <MenuItem fx:id="adminLoginBtn" mnemonicParsing="false" onAction="#startAdmin" text="Login" />
             </items>
           </Menu>
         </menus>
       </MenuBar>
    </top>
    <center>
-      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="welcome-screen" stylesheets="@../styles/application.css" BorderPane.alignment="CENTER">
+      <VBox alignment="CENTER" onMouseClicked="#startGuest" prefHeight="200.0" prefWidth="100.0" styleClass="welcome-screen" stylesheets="@../styles/application.css" BorderPane.alignment="CENTER">
          <children>
-            <TextField alignment="CENTER" editable="false" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" styleClass="welcome-screen-msg" stylesheets="@../styles/application.css" text="Welcome to Hotel Marma">
+            <TextField alignment="CENTER" editable="false" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" onMouseClicked="#startGuest" styleClass="welcome-screen-msg" stylesheets="@../styles/application.css" text="Welcome to Hotel Marma">
                <font>
                   <Font name="Bell MT Bold" size="60.0" />
                </font>
@@ -34,7 +34,7 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </VBox.margin>
             </TextField>
-            <TextField alignment="CENTER" editable="false" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" style="-fx-background-color: grey; -fx-border-color: black;" styleClass="welcome-screen-msg" stylesheets="@../styles/application.css" text="Click Anywhere to Begin">
+            <TextField alignment="CENTER" editable="false" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" onMouseClicked="#startGuest" style="-fx-background-color: grey; -fx-border-color: black;" styleClass="welcome-screen-msg" stylesheets="@../styles/application.css" text="Click Anywhere to Begin">
                <font>
                   <Font name="System Bold Italic" size="20.0" />
                </font>

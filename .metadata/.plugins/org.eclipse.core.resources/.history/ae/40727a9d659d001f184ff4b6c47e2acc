@@ -12,11 +12,12 @@ public class MainController {
 
     @FXML
     void startAdmin(ActionEvent event) {
-    	System.out.println("Admin Started");
+
     }
 
     @FXML
     void startGuest(MouseEvent event) {
-    	System.out.println("Guest Started");
+
     }
+
 }
