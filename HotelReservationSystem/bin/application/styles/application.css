@@ -12,29 +12,25 @@
 }
 
 .welcome-text-size{
-	-fx-font-size: 25;
+	-fx-font-size: 25px;
 }
 
 .choice-box .list-cell{
-	-fx-font-size: 40;
+	-fx-font-size: 40px;
 }
 
 .table-view {
-    -fx-font-size: 25;
-}
-
-.table-view .column-header-background .label {
-    -fx-font-size: 25;
-}
-
-.table-row-cell {
-    -fx-font-size: 25;
+    -fx-font-size: 25px;
 }
 
 .guest .choice-box .list-cell{
-	-fx-font-size: 50;
+	-fx-font-size: 50px;
 }
 
 .guest-text-size{
-	-fx-font-size: 50;
+	-fx-font-size: 50px;
+}
+
+.currentBookings-table-view {
+	-fx-font-size: 30px;
 }

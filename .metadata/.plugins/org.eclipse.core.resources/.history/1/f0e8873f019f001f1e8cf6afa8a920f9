@@ -1,0 +1,52 @@
+/* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+.welcome-screen{
+	-fx-background-image: url("../resources/hotel.jpg");
+	-fx-font-style: italic;
+	 -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}
+
+.welcome-screen-msg{
+	-fx-background-color: transparent;
+}
+
+.welcome-text-size{
+	-fx-font-size: 25;
+}
+
+.choice-box .list-cell{
+	-fx-font-size: 40;
+}
+
+.table-view {
+    -fx-font-size: 25;
+}
+
+.table-view .column-header-background .label {
+    -fx-font-size: 25;
+}
+
+.table-row-cell {
+    -fx-font-size: 25;
+}
+
+.guest .choice-box .list-cell{
+	-fx-font-size: 50;
+}
+
+.guest-text-size{
+	-fx-font-size: 50;
+}
+
+.currentBookings table-view .column-header-background .label {
+    -fx-font-size: 100px;
+}
+
+.currentBookings table-view {
+    -fx-font-size: 100px;
+}
+
+.currentBookings table-row-cell {
+    -fx-font-size: 100px;
+}
