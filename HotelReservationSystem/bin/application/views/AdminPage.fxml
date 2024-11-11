@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
+   <center>
+      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="15.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button mnemonicParsing="false" prefWidth="320.0" text="Book A Room">
+               <font>
+                  <Font size="35.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" prefWidth="320.0" text="Bill Services">
+               <font>
+                  <Font size="35.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" prefWidth="320.0" text="Current Bookings">
+               <font>
+                  <Font size="35.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" prefWidth="320.0" text="Available Rooms">
+               <font>
+                  <Font size="35.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" prefWidth="320.0" text="Search">
+               <font>
+                  <Font size="35.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" prefWidth="320.0" text="Exit">
+               <font>
+                  <Font size="35.0" />
+               </font>
+            </Button>
+         </children>
+         <padding>
+            <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+         </padding>
+      </VBox>
+   </center>
+   <top>
+      <Label text="Hotel marma" BorderPane.alignment="CENTER">
+         <font>
+            <Font name="Bell MT Bold" size="50.0" />
+         </font>
+         <BorderPane.margin>
+            <Insets top="15.0" />
+         </BorderPane.margin>
+      </Label>
+   </top>
+</BorderPane>
