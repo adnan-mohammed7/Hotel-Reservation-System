@@ -19,13 +19,14 @@
 	-fx-font-size: 40px;
 }
 
-.table-view {
-    -fx-font-size: 25px;
-}
-
 .guest .choice-box .list-cell{
 	-fx-font-size: 50px;
 }
+
+.table{
+	-fx-font-size: 25px;
+}
+
 
 .guest-text-size{
 	-fx-font-size: 50px;

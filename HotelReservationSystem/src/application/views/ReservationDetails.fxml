@@ -169,11 +169,11 @@
       </HBox>
    </bottom>
    <right>
-      <TableView fx:id="listView" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="282.0" prefWidth="600.0" stylesheets="@../styles/application.css" BorderPane.alignment="CENTER">
+      <TableView fx:id="listView" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="282.0" prefWidth="650.0" stylesheets="@../styles/application.css" BorderPane.alignment="CENTER">
         <columns>
           <TableColumn editable="false" maxWidth="1.7976931348623157E308" minWidth="122.40002745389938" prefWidth="188.00000303983688" resizable="false" text="Room Number" />
           <TableColumn editable="false" maxWidth="1.7976931348623157E308" minWidth="150.0" prefWidth="212.0000457763672" resizable="false" text="Room Type" />
-            <TableColumn maxWidth="1.7976931348623157E308" minWidth="150.0" prefWidth="200.0" resizable="false" text="Number of Guests" />
+            <TableColumn maxWidth="1.7976931348623157E308" minWidth="150.0" prefWidth="250.0" resizable="false" text="Number of Guests" />
         </columns>
          <BorderPane.margin>
             <Insets right="5.0" />
@@ -183,8 +183,8 @@
          </columnResizePolicy>
          <styleClass>
             <String fx:value="column-header-background" />
-            <String fx:value="table-view" />
             <String fx:value="label" />
+            <String fx:value="table" />
          </styleClass>
       </TableView>
    </right>

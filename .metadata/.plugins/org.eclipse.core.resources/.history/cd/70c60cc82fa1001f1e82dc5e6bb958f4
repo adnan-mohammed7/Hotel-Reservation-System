@@ -23,7 +23,7 @@
 	-fx-font-size: 50px;
 }
 
-.table{
+.table-view{
 	-fx-font-size: 25px;
 }
 
