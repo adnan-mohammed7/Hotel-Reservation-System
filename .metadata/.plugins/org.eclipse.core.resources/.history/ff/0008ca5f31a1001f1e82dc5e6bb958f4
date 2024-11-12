@@ -1,0 +1,15 @@
+package application.models;
+
+import java.util.concurrent.atomic.AtomicInteger;
+
+public class Guest {
+	AtomicInteger
+	String title;
+	String firstName;
+	String lastName;
+	String address;
+	Long phone;
+	String email;
+	
+	
+}
