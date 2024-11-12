@@ -5,6 +5,11 @@ public abstract class Room {
 	String roomType;
 	double rate;
 	
+	public Room(int id, double price) {
+		this.roomID = id;
+		this.rate = price;
+	}
+	
 	public Room(int id, String type, double price) {
 		this.roomID = id;
 		this.roomType = type;
