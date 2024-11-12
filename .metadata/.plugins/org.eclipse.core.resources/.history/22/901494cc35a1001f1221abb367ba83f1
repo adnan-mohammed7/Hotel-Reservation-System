@@ -1,5 +1,5 @@
 package application.models;
 
-public class Bill {
+public class AdminUsers {
 
 }
