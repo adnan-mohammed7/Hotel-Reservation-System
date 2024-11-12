@@ -1,0 +1,5 @@
+package application.models;
+
+public abstract class Room {
+
+}
