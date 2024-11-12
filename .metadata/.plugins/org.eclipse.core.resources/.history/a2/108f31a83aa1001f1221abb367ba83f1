@@ -74,16 +74,6 @@ public class AdminLoginController {
     	}
     }
     
-    @FXML
-    void showPassword(ActionEvent event) {
-    	if(showCheckBox.isSelected()) {
-            visiblePasswordField.setVisible(true);
-    	}else {
-            visiblePasswordField.setVisible(false);
-    	}
-    }
-
-    
     void openAdminPage() {
     	try {
     		BorderPane root = (BorderPane)FXMLLoader.load(getClass().getResource("/application/views/AdminPage.fxml"));
@@ -113,7 +103,7 @@ public class AdminLoginController {
     }
     
     boolean checkUserCredentials(String username, String password) {
-    	for(AdminUsers a : users) {
+    	for(User a : users) {
     		if(a.getUserName().equals(username) && a.getPassword().equals(password)) {
     			return true;
     		}else if(a.getUserName().equals(username) && !(a.getPassword().equals(password))) {
@@ -124,4 +114,5 @@ public class AdminLoginController {
     	showAlert("User does not exist!");
     	return false;
     }
+
 }

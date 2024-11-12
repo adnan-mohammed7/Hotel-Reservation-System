@@ -74,16 +74,6 @@ public class AdminLoginController {
     	}
     }
     
-    @FXML
-    void showPassword(ActionEvent event) {
-    	if(showCheckBox.isSelected()) {
-            visiblePasswordField.setVisible(true);
-    	}else {
-            visiblePasswordField.setVisible(false);
-    	}
-    }
-
-    
     void openAdminPage() {
     	try {
     		BorderPane root = (BorderPane)FXMLLoader.load(getClass().getResource("/application/views/AdminPage.fxml"));

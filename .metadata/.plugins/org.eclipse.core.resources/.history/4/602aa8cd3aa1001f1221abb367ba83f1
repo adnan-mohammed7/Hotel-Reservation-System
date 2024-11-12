@@ -76,7 +76,7 @@ public class AdminLoginController {
     
     @FXML
     void showPassword(ActionEvent event) {
-    	if(showCheckBox.isSelected()) {
+    	if(showCheckbox.isSelected()) {
             visiblePasswordField.setVisible(true);
     	}else {
             visiblePasswordField.setVisible(false);
