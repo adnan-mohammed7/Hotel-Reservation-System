@@ -5,4 +5,7 @@
     <fullyQualifiedTypeName name="application.controllers.AdminLoginController"/>
     <fullyQualifiedTypeName name="java.util.concurrent.atomic.AtomicInteger"/>
     <fullyQualifiedTypeName name="application.models.AdminUsers"/>
+    <fullyQualifiedTypeName name="application.models.Room"/>
+    <fullyQualifiedTypeName name="java.util.Arrays"/>
+    <fullyQualifiedTypeName name="java.time.temporal.ChronoUnit"/>
 </qualifiedTypeNameHistroy>

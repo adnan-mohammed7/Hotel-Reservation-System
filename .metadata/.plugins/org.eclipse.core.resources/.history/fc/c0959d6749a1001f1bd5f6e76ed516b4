@@ -1,0 +1,63 @@
+package application.models;
+
+import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
+
+public class Reservation {
+	static final AtomicInteger counter = new AtomicInteger(0);
+	int reservationID;
+	Guest guest;
+	List<Room> rooms;
+	int numOfRooms;
+	int numOfDays;
+	String typesOfRooms;
+	Date bookingDate;
+	Date checkInDate;
+	Date checkOutDate;
+	Bill bill;
+	double discount;
+	
+	public Reservation() {
+		this.reservationID = counter.incrementAndGet();
+		rooms = new ArrayList<>();
+		bill = new Bill();
+	}
+	
+	public Reservation(Guest guest, Room[] rooms, double dis, Date date, Date in, Date out) {
+		this.reservationID = counter.incrementAndGet();
+		this.guest = guest;
+		this.rooms = new ArrayList<>(Arrays.asList(rooms));
+		this.discount = dis;
+		this.checkInDate = in;
+		this.checkOutDate = out;
+		calculateDays();
+		bill = new Bill(calculateRate(), numOfDays, discount);
+	}
+	
+	void calculateDays() { 
+	}
+	
+	double calculateRate() {
+		double total = 0.0;
+		for (Room e : rooms) {
+			total += e.getRate();
+		}
+		return total;
+	}
+	
+	void calculateNumOfRooms() {
+		numOfRooms = rooms.size();
+	}
+	
+	void calculateTypeOfRooms() {
+		for(int i = 0; i < rooms.size(); i++) {
+			typesOfRooms += rooms.get(i).getRoomType();
+			if(i != rooms.size() - 1)
+				typesOfRooms += " ";
+		}
+	}
+}

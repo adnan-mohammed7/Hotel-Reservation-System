@@ -12,10 +12,6 @@ public class Bill {
 	double amountAfterTax;
 	int NumOfDays;
 	
-	public Bill() {
-		this.billID = counter.incrementAndGet();
-	}
-	
 	public Bill(double rate, int days) {
 		this.ratePerNight = rate;
 		this.NumOfDays = days;

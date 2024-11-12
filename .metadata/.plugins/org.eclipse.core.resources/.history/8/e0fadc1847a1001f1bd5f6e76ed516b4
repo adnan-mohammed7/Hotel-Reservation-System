@@ -13,7 +13,7 @@ public class Bill {
 	int NumOfDays;
 	
 	public Bill() {
-		this.billID = counter.incrementAndGet();
+		
 	}
 	
 	public Bill(double rate, int days) {

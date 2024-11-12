@@ -1,0 +1,29 @@
+package application.models;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
+
+public class Reservation {
+	static final AtomicInteger counter = new AtomicInteger(0);
+	int reservationID;
+	Guest guest;
+	List<Room> rooms;
+	int numOfRooms;
+	int numOfDays;
+	String typesOfRooms;
+	Date bookingDate;
+	Date checkInDate;
+	Date checkOutDate;
+	Bill bill;
+	
+	public Reservation() {
+		this.reservationID = counter.incrementAndGet();
+		rooms = new ArrayList<>();
+	}
+	
+	public Reservation(Guest guest, Room[] rooms) {
+		
+	}
+}
