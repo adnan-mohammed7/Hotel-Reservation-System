@@ -107,7 +107,7 @@
                   <Insets bottom="10.0" top="10.0" />
                </padding>
                <children>
-                  <Button mnemonicParsing="false" prefHeight="80.0" prefWidth="200.0" text="Rules" HBox.hgrow="ALWAYS">
+                  <Button fx:id="rulesBtn" mnemonicParsing="false" onAction="#showRules" prefHeight="80.0" prefWidth="200.0" text="Rules" HBox.hgrow="ALWAYS">
                      <font>
                         <Font size="45.0" />
                      </font>
@@ -135,7 +135,7 @@
          <children>
             <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="15.0" HBox.hgrow="ALWAYS">
                <children>
-                <Button alignment="CENTER" mnemonicParsing="false" prefHeight="80.0" prefWidth="300.0" text="ADD" textAlignment="CENTER" HBox.hgrow="ALWAYS">
+                <Button fx:id="addBtn" alignment="CENTER" mnemonicParsing="false" onAction="#addRoom" prefHeight="80.0" prefWidth="300.0" text="ADD" textAlignment="CENTER" HBox.hgrow="ALWAYS">
                      <font>
                         <Font size="45.0" />
                      </font>
@@ -147,12 +147,12 @@
             </HBox>
             <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="15.0" HBox.hgrow="ALWAYS">
                <children>
-                <Button mnemonicParsing="false" prefHeight="80.0" prefWidth="300.0" text="REMOVE" textAlignment="CENTER">
+                <Button fx:id="removeBtn" mnemonicParsing="false" onAction="#removeRoom" prefHeight="80.0" prefWidth="300.0" text="REMOVE" textAlignment="CENTER">
                      <font>
                         <Font size="45.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="80.0" prefWidth="300.0" text="CONFIRM">
+                  <Button fx:id="nextBtn" mnemonicParsing="false" onAction="#startGuestDetails" prefHeight="80.0" prefWidth="300.0" text="NEXT">
                      <font>
                         <Font size="45.0" />
                      </font>
@@ -169,7 +169,7 @@
       </HBox>
    </bottom>
    <right>
-      <TableView maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="282.0" prefWidth="600.0" stylesheets="@../styles/application.css" BorderPane.alignment="CENTER">
+      <TableView fx:id="listView" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="282.0" prefWidth="600.0" stylesheets="@../styles/application.css" BorderPane.alignment="CENTER">
         <columns>
           <TableColumn editable="false" maxWidth="1.7976931348623157E308" minWidth="122.40002745389938" prefWidth="188.00000303983688" resizable="false" text="Room Number" />
           <TableColumn editable="false" maxWidth="1.7976931348623157E308" minWidth="150.0" prefWidth="212.0000457763672" resizable="false" text="Room Type" />

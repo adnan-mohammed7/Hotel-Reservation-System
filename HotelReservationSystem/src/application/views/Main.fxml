@@ -15,16 +15,16 @@
    <top>
       <MenuBar BorderPane.alignment="CENTER">
         <menus>
-          <Menu mnemonicParsing="false" style="-fx-font-size: 16;" text="Admin">
+          <Menu mnemonicParsing="false" onAction="#startAdmin" style="-fx-font-size: 16;" text="Admin">
             <items>
-              <MenuItem fx:id="adminLoginBtn" mnemonicParsing="false" onAction="#startAdmin" text="Login" />
+              <MenuItem fx:id="adminLoginMenuItem" mnemonicParsing="false" onAction="#startAdmin" text="Login" />
             </items>
           </Menu>
         </menus>
       </MenuBar>
    </top>
    <center>
-      <VBox alignment="CENTER" onMouseClicked="#startGuest" prefHeight="200.0" prefWidth="100.0" styleClass="welcome-screen" stylesheets="@../styles/application.css" BorderPane.alignment="CENTER">
+      <VBox fx:id="touchScreen" alignment="CENTER" onMouseClicked="#startGuest" prefHeight="200.0" prefWidth="100.0" styleClass="welcome-screen" stylesheets="@../styles/application.css" BorderPane.alignment="CENTER">
          <children>
             <TextField alignment="CENTER" editable="false" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" onMouseClicked="#startGuest" styleClass="welcome-screen-msg" stylesheets="@../styles/application.css" text="Welcome to Hotel Marma">
                <font>

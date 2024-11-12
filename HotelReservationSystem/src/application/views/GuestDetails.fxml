@@ -13,7 +13,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controllers.GuestDetailsController">
    <top>
       <Label alignment="CENTER" text="Hotel Marma" textAlignment="CENTER" BorderPane.alignment="CENTER">
@@ -87,7 +86,7 @@
    <right>
       <VBox alignment="BOTTOM_CENTER" prefHeight="200.0" prefWidth="400.0" BorderPane.alignment="BOTTOM_CENTER">
          <children>
-            <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" prefHeight="80.0" prefWidth="300.0" text="CONFIRM" textAlignment="CENTER" VBox.vgrow="ALWAYS">
+            <Button fx:id="confirmBtn" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#confirmBooking" prefHeight="80.0" prefWidth="300.0" text="CONFIRM" textAlignment="CENTER" VBox.vgrow="ALWAYS">
                <font>
                   <Font size="40.0" />
                </font>

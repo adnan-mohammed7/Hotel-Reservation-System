@@ -7,37 +7,36 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane fx:id="screen" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseMoved="#setStage" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controllers.AdminPageController">
    <center>
       <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="15.0" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" prefWidth="320.0" text="Book A Room">
+            <Button fx:id="bookingBtn" mnemonicParsing="false" onAction="#startRoomBooking" prefWidth="320.0" text="Book A Room">
                <font>
                   <Font size="35.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" prefWidth="320.0" text="Bill Services">
+            <Button fx:id="billBtn" mnemonicParsing="false" onAction="#startBillProcess" prefWidth="320.0" text="Bill Services">
                <font>
                   <Font size="35.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" prefWidth="320.0" text="Current Bookings">
+            <Button fx:id="currentBookingsBtn" mnemonicParsing="false" onAction="#showCurrentBookings" prefWidth="320.0" text="Current Bookings">
                <font>
                   <Font size="35.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" prefWidth="320.0" text="Available Rooms">
+            <Button fx:id="availableRoomsBtn" mnemonicParsing="false" onAction="#showAvailableRooms" prefWidth="320.0" text="Available Rooms">
                <font>
                   <Font size="35.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" prefWidth="320.0" text="Search">
+            <Button fx:id="searchBtn" mnemonicParsing="false" onAction="#startSearch" prefWidth="320.0" text="Search">
                <font>
                   <Font size="35.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" prefWidth="320.0" text="Exit">
+            <Button fx:id="exitBtn" mnemonicParsing="false" onAction="#exitTheApplication" prefWidth="320.0" text="Exit">
                <font>
                   <Font size="35.0" />
                </font>
