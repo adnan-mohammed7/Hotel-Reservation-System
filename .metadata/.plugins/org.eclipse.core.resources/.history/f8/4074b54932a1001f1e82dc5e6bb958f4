@@ -1,0 +1,10 @@
+package application.models;
+
+import java.util.concurrent.atomic.AtomicInteger;
+
+public class Bill {
+	static final AtomicInteger counter = new AtomicInteger(0);
+	int billID;
+	double ratePerNight;
+	double TotalAmount;
+}
