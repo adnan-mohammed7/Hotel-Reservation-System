@@ -1,5 +1,7 @@
 package application.controllers;
 
+import application.models.Guest;
+import application.models.Reservation;
 import application.models.RoomDetails;
 import application.utility.Validate;
 import javafx.collections.ObservableList;
@@ -33,7 +35,10 @@ public class GuestDetailsController {
     @FXML
     private ChoiceBox<String> titleChoiceBox;
     
-    private ObservableList<RoomDetails> roomDetails;
+    private Reservation reservation;
+    
+    String title, fName, lName, location, mail;
+    Long phoneNumber;
     
     @FXML
     void initialize() {
@@ -43,12 +48,15 @@ public class GuestDetailsController {
     @FXML
     void confirmBooking(ActionEvent event) {
     	if(validateFields()) {
+    		setValues();
+    		Guest guest = new Guest(title, fName, lName, location, phoneNumber, mail);
     		System.out.println("Confirmed");
+    		reservation.setGuest(guest);
     	}
     }
     
-    void setRoomDetails(ObservableList<RoomDetails> list) {
-    	roomDetails = list;
+    void setReservation(Reservation newReservation) {
+    	reservation = newReservation;
     }
     
     boolean validateFields() {
@@ -86,5 +94,14 @@ public class GuestDetailsController {
     	}
     	
     	return true;
+    }
+    
+    void setValues() {
+    	title = titleChoiceBox.getValue();
+    	fName = firstName.getText().toString();
+    	lName = lastName.getText().toString();
+    	location = address.getText().toString();
+    	phoneNumber = Long.parseLong(phone.getText().toString());
+    	mail = email.getText().toString();
     }
 }

@@ -1,5 +1,8 @@
 package application.controllers;
 
+import java.util.List;
+
+import application.database.Database;
 import application.models.AdminUsers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -34,13 +37,11 @@ public class AdminLoginController {
 	    @FXML
 	    private TextField visiblePasswordField;
     
-    private AdminUsers[] users;
+    private List<AdminUsers> users;
     
     @FXML
     public void initialize() {
-    	users = new AdminUsers[2];
-    	users[0] = new AdminUsers("Adnan", "Seneca");
-    	users[1] = new AdminUsers("Saad", "York");
+    	users = new Database().getAdmins();
     	
     	visiblePasswordField.textProperty().bind(passwordField.textProperty());
     }

@@ -1,8 +1,8 @@
 package application.models;
 
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -14,53 +14,30 @@ public class Reservation {
 	int numOfRooms;
 	int numOfDays;
 	String typesOfRooms;
-	Date bookingDate;
-	Date checkInDate;
-	Date checkOutDate;
+	LocalDate bookingDate;
+	LocalDate checkInDate;
+	LocalDate checkOutDate;
 	Bill bill;
 	double discount;
 	String status;
 	
 	public Reservation() {
-		this.reservationID = counter.incrementAndGet();
 		roomDetails = new ArrayList<>();
 		bill = new Bill();
+		status = "Reserved";
 	}
 	
-	public Reservation(Guest guest, RoomDetails[] roomDetails, double dis, Date date, Date in, Date out) {
-		this.reservationID = counter.incrementAndGet();
-		this.guest = guest;
-		this.roomDetails = new ArrayList<>(Arrays.asList(roomDetails));
-		this.discount = dis;
-		this.bookingDate = date;
-		this.checkInDate = in;
-		this.checkOutDate = out;
-		calculateDays();
-		bill = new Bill(calculateRate(), numOfDays, discount);
-	}
-	
-	void calculateDays() { 
-	}
-	
-	double calculateRate() {
-		double total = 0.0;
-		for (RoomDetails e : roomDetails) {
-			total += e.getRoom().getRate();
-		}
-		return total;
-	}
-	
-	void calculateNumOfRooms() {
-		numOfRooms = roomDetails.size();
-	}
-	
-	void calculateTypeOfRooms() {
-		for(int i = 0; i < roomDetails.size(); i++) {
-			typesOfRooms += roomDetails.get(i).getRoom().getRoomType();
-			if(i != roomDetails.size() - 1)
-				typesOfRooms += " ";
-		}
-	}
+//	public Reservation(Guest guest, RoomDetails[] roomDetails, double dis, LocalDate date, LocalDate in, LocalDate out) {
+//		this.guest = guest;
+//		this.roomDetails = new ArrayList<>(Arrays.asList(roomDetails));
+//		this.discount = dis;
+//		this.bookingDate = date;
+//		this.checkInDate = in;
+//		this.checkOutDate = out;
+//		setDays();
+//		bill = new Bill(calculateRate(), numOfDays, discount);
+//		status = "Reserved";
+//	}
 
 	public int getReservationID() {
 		return reservationID;
@@ -80,9 +57,9 @@ public class Reservation {
 
 	public void setRoomDetails(List<RoomDetails> rooms) {
 		this.roomDetails = rooms;
-		calculateNumOfRooms();
-		calculateRate();
-		calculateTypeOfRooms();
+		setNumOfRooms();
+		setTypeOfRooms();
+		generateBill();
 	}
 
 	public int getNumOfRooms() {
@@ -109,30 +86,30 @@ public class Reservation {
 		this.typesOfRooms = typesOfRooms;
 	}
 
-	public Date getBookingDate() {
+	public LocalDate getBookingDate() {
 		return bookingDate;
 	}
 
-	public void setBookingDate(Date bookingDate) {
+	public void setBookingDate(LocalDate bookingDate) {
 		this.bookingDate = bookingDate;
 	}
 
-	public Date getCheckInDate() {
+	public LocalDate getCheckInDate() {
 		return checkInDate;
 	}
 
-	public void setCheckInDate(Date checkInDate) {
+	public void setCheckInDate(LocalDate checkInDate) {
 		this.checkInDate = checkInDate;
-		calculateDays();
+		setDays();
 	}
 
-	public Date getCheckOutDate() {
+	public LocalDate getCheckOutDate() {
 		return checkOutDate;
 	}
 
-	public void setCheckOutDate(Date checkOutDate) {
+	public void setCheckOutDate(LocalDate checkOutDate) {
 		this.checkOutDate = checkOutDate;
-		calculateDays();
+		setDays();
 	}
 
 	public Bill getBill() {
@@ -150,5 +127,43 @@ public class Reservation {
 	public void setDiscount(double discount) {
 		this.discount = discount;
 		bill.setDiscount(discount);
+	}
+	
+	void setDays() {
+		if(checkInDate != null && checkOutDate != null) {
+			long days = ChronoUnit.DAYS.between(checkInDate, checkOutDate);
+			numOfDays = (int) days;
+			generateBill();
+		}
+	}
+	
+	double calculateRate() {
+		double total = 0.0;
+		if(numOfRooms > 0) {
+			for (RoomDetails e : roomDetails) {
+				total += e.getRoom().getRate();
+			}
+		}
+		return total;
+	}
+	
+	void setNumOfRooms() {
+		numOfRooms = roomDetails.size();
+	}
+	
+	void setTypeOfRooms() {
+		for(int i = 0; i < roomDetails.size(); i++) {
+			typesOfRooms += roomDetails.get(i).getRoom().getRoomType();
+			if(i != roomDetails.size() - 1)
+				typesOfRooms += " ";
+		}
+	}
+	
+	void generateBill() {
+		if(calculateRate() != 0 && numOfDays > 0) {
+			bill.setRatePerNight(calculateRate());
+			bill.setNumOfDays(numOfDays);
+			bill.calculate();
+		}
 	}
 }

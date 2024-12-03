@@ -3,6 +3,7 @@ package application.controllers;
 import java.time.LocalDate;
 import java.util.Observable;
 
+import application.models.Reservation;
 import application.models.Room;
 import application.models.RoomDetails;
 import application.models.Single;
@@ -79,6 +80,7 @@ public class ReservationDetailsController {
     Room room;
     RoomDetails selectedRoom;
     ObservableList<RoomDetails> allSelectedRooms;
+    Reservation reservation;
 
     
     @FXML
@@ -128,6 +130,7 @@ public class ReservationDetailsController {
     	        checkOutDate.setDisable(false);
     	    }
     	});
+    	reservation = new Reservation();
     }
     
     @FXML
@@ -168,12 +171,16 @@ public class ReservationDetailsController {
 
     @FXML
     void startGuestDetails(ActionEvent event) {
+    	reservation.setRoomDetails(allSelectedRooms);
+    	reservation.setCheckInDate(checkInDate.getValue());
+    	reservation.setCheckOutDate(checkOutDate.getValue());
+    	reservation.setBookingDate(LocalDate.now());
     	try {
     		FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/views/GuestDetails.fxml"));
     		BorderPane root = loader.load();
     		
     		GuestDetailsController controller = loader.getController();
-    		controller.setRoomDetails(allSelectedRooms);
+    		controller.setReservation(reservation);
     		
     		Scene scene = new Scene(root);
     		Stage stage = (Stage) (nextBtn.getScene().getWindow());

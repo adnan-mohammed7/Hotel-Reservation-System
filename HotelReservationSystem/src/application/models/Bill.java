@@ -1,9 +1,6 @@
 package application.models;
 
-import java.util.concurrent.atomic.AtomicInteger;
-
 public class Bill {
-	static final AtomicInteger counter = new AtomicInteger(0);
 	int billID;
 	double ratePerNight;
 	double totalAmount;
@@ -13,13 +10,11 @@ public class Bill {
 	int NumOfDays;
 	
 	public Bill() {
-		this.billID = counter.incrementAndGet();
 	}
 	
 	public Bill(double rate, int days) {
 		this.ratePerNight = rate;
 		this.NumOfDays = days;
-		this.billID = counter.incrementAndGet();
 		calculate();
 	}
 	
@@ -27,7 +22,6 @@ public class Bill {
 		this.ratePerNight = rate;
 		this.NumOfDays = days;
 		this.discount = dis;
-		this.billID = counter.incrementAndGet();
 		calculate();
 	}
 	
@@ -67,6 +61,9 @@ public class Bill {
 	}
 	public void setAmountAfterTax(double amountAfterTax) {
 		this.amountAfterTax = amountAfterTax;
+	}
+	public void setNumOfDays(int days) {
+		this.NumOfDays = days;
 	}
 	void calculateTotalAmount() {
 		totalAmount = ratePerNight * NumOfDays;
