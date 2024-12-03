@@ -10,7 +10,7 @@ public class Reservation {
 	static final AtomicInteger counter = new AtomicInteger(0);
 	int reservationID;
 	Guest guest;
-	List<Room> rooms;
+	List<RoomDetails> roomDetails;
 	int numOfRooms;
 	int numOfDays;
 	String typesOfRooms;
@@ -19,17 +19,18 @@ public class Reservation {
 	Date checkOutDate;
 	Bill bill;
 	double discount;
+	String status;
 	
 	public Reservation() {
 		this.reservationID = counter.incrementAndGet();
-		rooms = new ArrayList<>();
+		roomDetails = new ArrayList<>();
 		bill = new Bill();
 	}
 	
-	public Reservation(Guest guest, Room[] rooms, double dis, Date date, Date in, Date out) {
+	public Reservation(Guest guest, RoomDetails[] roomDetails, double dis, Date date, Date in, Date out) {
 		this.reservationID = counter.incrementAndGet();
 		this.guest = guest;
-		this.rooms = new ArrayList<>(Arrays.asList(rooms));
+		this.roomDetails = new ArrayList<>(Arrays.asList(roomDetails));
 		this.discount = dis;
 		this.bookingDate = date;
 		this.checkInDate = in;
@@ -43,20 +44,20 @@ public class Reservation {
 	
 	double calculateRate() {
 		double total = 0.0;
-		for (Room e : rooms) {
-			total += e.getRate();
+		for (RoomDetails e : roomDetails) {
+			total += e.getRoom().getRate();
 		}
 		return total;
 	}
 	
 	void calculateNumOfRooms() {
-		numOfRooms = rooms.size();
+		numOfRooms = roomDetails.size();
 	}
 	
 	void calculateTypeOfRooms() {
-		for(int i = 0; i < rooms.size(); i++) {
-			typesOfRooms += rooms.get(i).getRoomType();
-			if(i != rooms.size() - 1)
+		for(int i = 0; i < roomDetails.size(); i++) {
+			typesOfRooms += roomDetails.get(i).getRoom().getRoomType();
+			if(i != roomDetails.size() - 1)
 				typesOfRooms += " ";
 		}
 	}
@@ -73,12 +74,12 @@ public class Reservation {
 		this.guest = guest;
 	}
 
-	public List<Room> getRooms() {
-		return rooms;
+	public List<RoomDetails> getRoomDetails() {
+		return roomDetails;
 	}
 
-	public void setRooms(List<Room> rooms) {
-		this.rooms = rooms;
+	public void setRoomDetails(List<RoomDetails> rooms) {
+		this.roomDetails = rooms;
 		calculateNumOfRooms();
 		calculateRate();
 		calculateTypeOfRooms();

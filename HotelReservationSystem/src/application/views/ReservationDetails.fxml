@@ -20,6 +20,31 @@
          <children>
             <HBox VBox.vgrow="ALWAYS">
                <children>
+                  <Label maxHeight="1.7976931348623157E308" maxWidth="-Infinity" prefWidth="400.0" text="Check-In">
+                     <font>
+                        <Font size="40.0" />
+                     </font></Label>
+                  <DatePicker fx:id="checkInDate" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="welcome-text-size" stylesheets="@../styles/application.css" HBox.hgrow="ALWAYS" />
+               </children>
+               <padding>
+                  <Insets bottom="10.0" top="10.0" />
+               </padding>
+            </HBox>
+            <HBox VBox.vgrow="ALWAYS">
+               <children>
+                  <Label maxHeight="1.7976931348623157E308" maxWidth="-Infinity" prefWidth="400.0" text="Check-Out">
+                     <font>
+                        <Font size="40.0" />
+                     </font>
+                  </Label>
+                  <DatePicker fx:id="checkOutDate" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="welcome-text-size" stylesheets="@../styles/application.css" HBox.hgrow="ALWAYS" />
+               </children>
+               <padding>
+                  <Insets bottom="10.0" top="10.0" />
+               </padding>
+            </HBox>
+            <HBox VBox.vgrow="ALWAYS">
+               <children>
                   <Label maxHeight="1.7976931348623157E308" maxWidth="-Infinity" prefWidth="400.0" text="Number Of Guests" HBox.hgrow="ALWAYS">
                      <font>
                         <Font size="40.0" />
@@ -40,7 +65,7 @@
                      <font>
                         <Font size="40.0" />
                      </font></Label>
-                  <ChoiceBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@../styles/application.css" HBox.hgrow="ALWAYS">
+                  <ChoiceBox fx:id="roomType" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@../styles/application.css" HBox.hgrow="ALWAYS">
                      <styleClass>
                         <String fx:value="welcome-text-size" />
                         <String fx:value="list-cell" />
@@ -56,7 +81,7 @@
                      <font>
                         <Font size="40.0" />
                      </font></Label>
-                  <ChoiceBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@../styles/application.css" HBox.hgrow="ALWAYS">
+                  <ChoiceBox fx:id="availableRooms" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@../styles/application.css" HBox.hgrow="ALWAYS">
                      <styleClass>
                         <String fx:value="welcome-text-size" />
                         <String fx:value="list-cell" />
@@ -68,51 +93,28 @@
             </HBox>
             <HBox VBox.vgrow="ALWAYS">
                <children>
-                  <Label maxHeight="1.7976931348623157E308" maxWidth="-Infinity" prefWidth="400.0" text="Check-In">
-                     <font>
-                        <Font size="40.0" />
-                     </font></Label>
-                  <DatePicker maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="welcome-text-size" stylesheets="@../styles/application.css" HBox.hgrow="ALWAYS" />
-               </children>
-               <padding>
-                  <Insets bottom="10.0" top="10.0" />
-               </padding>
-            </HBox>
-            <HBox VBox.vgrow="ALWAYS">
-               <children>
-                  <Label maxHeight="1.7976931348623157E308" maxWidth="-Infinity" prefWidth="400.0" text="Check-Out">
-                     <font>
-                        <Font size="40.0" />
-                     </font></Label>
-                  <DatePicker maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="welcome-text-size" stylesheets="@../styles/application.css" HBox.hgrow="ALWAYS" />
-               </children>
-               <padding>
-                  <Insets bottom="10.0" top="10.0" />
-               </padding>
-            </HBox>
-            <HBox VBox.vgrow="ALWAYS">
-               <children>
                   <Label maxHeight="1.7976931348623157E308" maxWidth="-Infinity" prefWidth="400.0" text="Rate/Day">
                      <font>
                         <Font size="40.0" />
                      </font></Label>
-                  <TextField maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="welcome-text-size" stylesheets="@../styles/application.css" HBox.hgrow="ALWAYS" />
+                  <TextField fx:id="ratePerDay" editable="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="welcome-text-size" stylesheets="@../styles/application.css" HBox.hgrow="ALWAYS" />
                </children>
                <padding>
                   <Insets bottom="10.0" top="10.0" />
                </padding>
             </HBox>
-            <HBox VBox.vgrow="ALWAYS">
+            <HBox>
+               <children>
+                  <Label maxHeight="1.7976931348623157E308" maxWidth="-Infinity" prefWidth="400.0" text="Total Rate/Day">
+                     <font>
+                        <Font size="40.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="totalRatePerDay" editable="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="welcome-text-size" stylesheets="@../styles/application.css" HBox.hgrow="ALWAYS" />
+               </children>
                <padding>
                   <Insets bottom="10.0" top="10.0" />
                </padding>
-               <children>
-                  <Button fx:id="rulesBtn" mnemonicParsing="false" onAction="#showRules" prefHeight="80.0" prefWidth="200.0" text="Rules" HBox.hgrow="ALWAYS">
-                     <font>
-                        <Font size="45.0" />
-                     </font>
-                  </Button>
-               </children>
             </HBox>
          </children>
          <BorderPane.margin>
@@ -140,10 +142,18 @@
                         <Font size="45.0" />
                      </font>
                   </Button>
+                  <Button fx:id="rulesBtn" mnemonicParsing="false" onAction="#showRules" prefHeight="80.0" prefWidth="200.0" text="Rules" HBox.hgrow="ALWAYS">
+                     <font>
+                        <Font size="45.0" />
+                     </font>
+                  </Button>
                </children>
                <padding>
                   <Insets left="5.0" />
                </padding>
+               <HBox.margin>
+                  <Insets right="15.0" />
+               </HBox.margin>
             </HBox>
             <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="15.0" HBox.hgrow="ALWAYS">
                <children>
@@ -171,9 +181,9 @@
    <right>
       <TableView fx:id="listView" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="282.0" prefWidth="650.0" stylesheets="@../styles/application.css" BorderPane.alignment="CENTER">
         <columns>
-          <TableColumn editable="false" maxWidth="1.7976931348623157E308" minWidth="122.40002745389938" prefWidth="188.00000303983688" resizable="false" text="Room Number" />
-          <TableColumn editable="false" maxWidth="1.7976931348623157E308" minWidth="150.0" prefWidth="212.0000457763672" resizable="false" text="Room Type" />
-            <TableColumn maxWidth="1.7976931348623157E308" minWidth="150.0" prefWidth="250.0" resizable="false" text="Number of Guests" />
+          <TableColumn fx:id="roomNumCol" editable="false" maxWidth="1.7976931348623157E308" minWidth="122.40002745389938" prefWidth="188.00000303983688" resizable="false" text="Room Number" />
+          <TableColumn fx:id="roomTypeCol" editable="false" maxWidth="1.7976931348623157E308" minWidth="150.0" prefWidth="212.0000457763672" resizable="false" text="Room Type" />
+            <TableColumn fx:id="numOfGuestCol" maxWidth="1.7976931348623157E308" minWidth="150.0" prefWidth="250.0" resizable="false" text="Number of Guests" />
         </columns>
          <BorderPane.margin>
             <Insets right="5.0" />
