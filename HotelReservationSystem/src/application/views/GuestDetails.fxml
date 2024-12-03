@@ -72,11 +72,11 @@
                   <String fx:value="guest" />
                </styleClass>
             </ChoiceBox>
-            <TextField maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="guest-text-size" stylesheets="@../styles/application.css" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS" />
-            <TextField maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="guest-text-size" stylesheets="@../styles/application.css" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.vgrow="ALWAYS" />
-            <TextField maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="guest-text-size" stylesheets="@../styles/application.css" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.vgrow="ALWAYS" />
-            <TextField maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="guest-text-size" stylesheets="@../styles/application.css" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="4" GridPane.vgrow="ALWAYS" />
-            <TextField maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="guest-text-size" stylesheets="@../styles/application.css" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="5" GridPane.vgrow="ALWAYS" />
+            <TextField fx:id="firstName" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="guest-text-size" stylesheets="@../styles/application.css" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS" />
+            <TextField fx:id="lastName" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="guest-text-size" stylesheets="@../styles/application.css" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.vgrow="ALWAYS" />
+            <TextField fx:id="address" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="guest-text-size" stylesheets="@../styles/application.css" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.vgrow="ALWAYS" />
+            <TextField fx:id="phone" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="guest-text-size" stylesheets="@../styles/application.css" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="4" GridPane.vgrow="ALWAYS" />
+            <TextField fx:id="email" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="guest-text-size" stylesheets="@../styles/application.css" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="5" GridPane.vgrow="ALWAYS" />
          </children>
          <BorderPane.margin>
             <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />

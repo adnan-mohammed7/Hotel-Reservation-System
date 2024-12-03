@@ -6,6 +6,7 @@ import java.util.Observable;
 import application.models.Room;
 import application.models.RoomDetails;
 import application.models.Single;
+import application.utility.Validate;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
@@ -145,13 +146,24 @@ public class ReservationDetailsController {
     	if (listView.getSelectionModel().getSelectedItem() != null) {
     		allSelectedRooms.remove(listView.getSelectionModel().getSelectedItem());
     	}else {
-    		showAlert("Please select the room to be removed");
+    		Validate.showAlert("Please select the room to be removed");
     	}
     }
 
     @FXML
     void showRules(ActionEvent event) {
-
+    	String rules = "Single room: Max 2 person's.\n"
+    			+ "Double room: Max 4 person's.\n"
+    			+ "Deluxe and Pent rooms: Max 2 person's\n";
+    	
+    	Alert alert = new Alert(Alert.AlertType.INFORMATION);
+		alert.setTitle("Rules");
+		alert.setHeaderText(null);
+		alert.setContentText(rules);
+		DialogPane dialog = alert.getDialogPane();
+		dialog.setPrefSize(500, 240);
+		dialog.setStyle("-fx-font-size: 20px");
+		alert.show();
     }
 
     @FXML
@@ -178,51 +190,38 @@ public class ReservationDetailsController {
     
     boolean validateFields() {
     	if(checkInDate.getValue() == null) {
-    		showAlert("Please select a valid check-in date");
+    		Validate.showAlert("Please select a valid check-in date");
     		return false;
     	}else {
     		if(checkInDate.getValue().isBefore(LocalDate.now())){
-    			showAlert("Please select a check-in date not prior to today");
+    			Validate.showAlert("Please select a check-in date not prior to today");
     			return false;
     		}
     	}
     	if(checkOutDate.getValue() == null) {
-    		showAlert("Please select a valid check-out date");
+    		Validate.showAlert("Please select a valid check-out date");
     		return false;
     	}else {
     		if(checkOutDate.getValue().isBefore(checkInDate.getValue())) {
-    			showAlert("Please select a check-out date not prior to check-in date");
+    			Validate.showAlert("Please select a check-out date not prior to check-in date");
     			return false;
     		}else if(checkOutDate.getValue().isEqual(checkInDate.getValue())) {
-    			showAlert("Please select a check-out date not prior to tomorrow");
+    			Validate.showAlert("Please select a check-out date not prior to tomorrow");
     			return false;
     		}
     	}
     	if(numOfGuest.getValue() == null) {
-    		showAlert("Please select a valid number of guests");
+    		Validate.showAlert("Please select a valid number of guests");
     		return false;
     	}
     	if(roomType.getValue() == null) {
-    		showAlert("Please select a valid room type");
+    		Validate.showAlert("Please select a valid room type");
     		return false;
     	}
     	if(availableRooms.getValue() == null) {
-    		showAlert("Please select a valid room");
+    		Validate.showAlert("Please select a valid room");
     		return false;
     	}
     	return true;
     }
-    
-    public static void showAlert(String msg) {
-		Alert alert = new Alert(Alert.AlertType.ERROR);
-		alert.setTitle("Error");
-		alert.setHeaderText(null);
-		alert.setContentText(msg);
-		DialogPane dialog = alert.getDialogPane();
-		dialog.setPrefSize(500, 240);
-		dialog.setStyle("-fx-font-size: 20px");
-		dialog.lookupButton(ButtonType.OK).setStyle("-fx-font-size: 20px");
-		
-		alert.show();
-	}
 }
