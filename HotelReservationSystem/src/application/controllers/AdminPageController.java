@@ -64,7 +64,7 @@ public class AdminPageController {
     @FXML
     void startBillProcess(ActionEvent event) {
     	try {
-    		BorderPane root = (BorderPane)FXMLLoader.load(getClass().getResource("/application/views/BillService.fxml"));
+    		BorderPane root = (BorderPane)FXMLLoader.load(getClass().getResource("/application/views/BillSearch.fxml"));
     		startStage(root);
     		
     	} catch(Exception e) {
@@ -86,7 +86,7 @@ public class AdminPageController {
     @FXML
     void startSearch(ActionEvent event) {
     	try {
-    		BorderPane root = (BorderPane)FXMLLoader.load(getClass().getResource("/application/views/Search.fxml"));
+    		BorderPane root = (BorderPane)FXMLLoader.load(getClass().getResource("/application/views/CustomerSearch.fxml"));
     		startStage(root);
     		
     	} catch(Exception e) {

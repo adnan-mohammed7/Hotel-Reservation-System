@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controllers.SearchController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controllers.CustomerDetailsController">
    <top>
       <VBox BorderPane.alignment="CENTER">
          <children>
@@ -25,31 +25,36 @@
                   </Label>
                </children>
             </HBox>
-            <HBox alignment="CENTER_RIGHT" spacing="10.0">
-               <children>
-                  <TextField>
-                     <font>
-                        <Font size="40.0" />
-                     </font>
-                  </TextField>
-                  <Button mnemonicParsing="false" text="Search">
-                     <font>
-                        <Font size="40.0" />
-                     </font>
-                  </Button>
-               </children>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-               <VBox.margin>
-                  <Insets bottom="10.0" left="15.0" right="15.0" top="10.0" />
-               </VBox.margin>
-            </HBox>
          </children>
       </VBox>
    </top>
-   <left>
-      <GridPane hgap="10.0" maxHeight="-Infinity" prefHeight="300.0" prefWidth="1400.0" vgap="35.0" BorderPane.alignment="TOP_CENTER">
+   <padding>
+      <Insets bottom="20.0" />
+   </padding>
+   <bottom>
+      <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="bookingsBtn" mnemonicParsing="false" onAction="#openCustomerBookings" text="Customer Bookings">
+               <font>
+                  <Font size="39.0" />
+               </font>
+               <HBox.margin>
+                  <Insets right="20.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="mainMenuBtn" mnemonicParsing="false" onAction="#navigateToMainMenu" text="Main Menu">
+               <font>
+                  <Font size="39.0" />
+               </font>
+            </Button>
+         </children>
+         <padding>
+            <Insets bottom="15.0" left="15.0" right="15.0" />
+         </padding>
+      </HBox>
+   </bottom>
+   <center>
+      <GridPane hgap="10.0" maxHeight="-Infinity" prefHeight="300.0" prefWidth="1400.0" vgap="35.0" BorderPane.alignment="CENTER">
         <columnConstraints>
           <ColumnConstraints hgrow="NEVER" minWidth="10.0" prefWidth="140.0" />
           <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="350.0" />
@@ -92,27 +97,27 @@
                   <Font size="50.0" />
                </font>
             </Label>
-            <TextField editable="false" styleClass="guest-text-size" stylesheets="@../styles/application.css" GridPane.columnIndex="1">
+            <TextField fx:id="title" editable="false" styleClass="guest-text-size" stylesheets="@../styles/application.css" GridPane.columnIndex="1">
                <font>
                   <Font size="40.0" />
                </font></TextField>
-            <TextField editable="false" styleClass="guest-text-size" stylesheets="@../styles/application.css" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
+            <TextField fx:id="firstName" editable="false" styleClass="guest-text-size" stylesheets="@../styles/application.css" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
                <font>
                   <Font size="40.0" />
                </font></TextField>
-            <TextField editable="false" styleClass="guest-text-size" stylesheets="@../styles/application.css" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.vgrow="ALWAYS">
+            <TextField fx:id="lastName" editable="false" styleClass="guest-text-size" stylesheets="@../styles/application.css" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.vgrow="ALWAYS">
                <font>
                   <Font size="40.0" />
                </font></TextField>
-            <TextField editable="false" styleClass="guest-text-size" stylesheets="@../styles/application.css" GridPane.columnIndex="3" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
+            <TextField fx:id="address" editable="false" styleClass="guest-text-size" stylesheets="@../styles/application.css" GridPane.columnIndex="3" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
                <font>
                   <Font size="40.0" />
                </font></TextField>
-            <TextField editable="false" styleClass="guest-text-size" stylesheets="@../styles/application.css" GridPane.columnIndex="3" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
+            <TextField fx:id="phone" editable="false" styleClass="guest-text-size" stylesheets="@../styles/application.css" GridPane.columnIndex="3" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
                <font>
                   <Font size="40.0" />
                </font></TextField>
-            <TextField editable="false" styleClass="guest-text-size" stylesheets="@../styles/application.css" GridPane.columnIndex="3" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.vgrow="ALWAYS">
+            <TextField fx:id="email" editable="false" styleClass="guest-text-size" stylesheets="@../styles/application.css" GridPane.columnIndex="3" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.vgrow="ALWAYS">
                <font>
                   <Font size="40.0" />
                </font></TextField>
@@ -121,22 +126,5 @@
             <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
          </BorderPane.margin>
       </GridPane>
-   </left>
-   <padding>
-      <Insets bottom="20.0" />
-   </padding>
-   <bottom>
-      <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-         <children>
-            <Button fx:id="mainMenuBtn" mnemonicParsing="false" onAction="#navigateToMainMenu" text="Main Menu">
-               <font>
-                  <Font size="39.0" />
-               </font>
-            </Button>
-         </children>
-         <padding>
-            <Insets bottom="15.0" left="15.0" right="15.0" />
-         </padding>
-      </HBox>
-   </bottom>
+   </center>
 </BorderPane>

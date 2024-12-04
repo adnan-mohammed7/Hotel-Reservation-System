@@ -20,6 +20,16 @@ public class Guest {
 		this.email = email;
 	}
 	
+	public Guest(int id, String title, String fName, String lName, String address, Long phone, String email){
+		this.guestID = id;
+		this.title = title;
+		this.firstName = fName;
+		this.lastName = lName;
+		this.address = address;
+		this.phone = phone;
+		this.email = email;
+	}
+	
 	public int getGuestID() {
 		return guestID;
 	}

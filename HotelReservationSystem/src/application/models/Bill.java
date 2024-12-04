@@ -7,20 +7,20 @@ public class Bill {
 	double discount = 0.0;
 	double amountAfterDiscount;
 	double amountAfterTax;
-	int NumOfDays;
+	int numOfDays;
 	
 	public Bill() {
 	}
 	
 	public Bill(double rate, int days) {
 		this.ratePerNight = rate;
-		this.NumOfDays = days;
+		this.numOfDays = days;
 		calculate();
 	}
 	
 	public Bill(double rate, int days, double dis) {
 		this.ratePerNight = rate;
-		this.NumOfDays = days;
+		this.numOfDays = days;
 		this.discount = dis;
 		calculate();
 	}
@@ -51,7 +51,11 @@ public class Bill {
 		calculate();
 	}
 	public double getAmountAfterDiscount() {
-		return amountAfterDiscount;
+		if(discount > 0.0) {
+			return amountAfterDiscount;
+		}else {
+			return totalAmount;
+		}
 	}
 	public void setAmountAfterDiscount(double amountAfterDiscount) {
 		this.amountAfterDiscount = amountAfterDiscount;
@@ -62,11 +66,14 @@ public class Bill {
 	public void setAmountAfterTax(double amountAfterTax) {
 		this.amountAfterTax = amountAfterTax;
 	}
+	public int getNumOfDays() {
+		return this.numOfDays;
+	}
 	public void setNumOfDays(int days) {
-		this.NumOfDays = days;
+		this.numOfDays = days;
 	}
 	void calculateTotalAmount() {
-		totalAmount = ratePerNight * NumOfDays;
+		totalAmount = ratePerNight * numOfDays;
 	}
 	void calculateAmountAfterDiscount() {
 		if (discount != 0.0)

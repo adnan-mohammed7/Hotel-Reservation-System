@@ -3,6 +3,7 @@ package application.models;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -18,7 +19,6 @@ public class Reservation {
 	LocalDate checkInDate;
 	LocalDate checkOutDate;
 	Bill bill;
-	double discount;
 	String status;
 	
 	public Reservation() {
@@ -27,17 +27,20 @@ public class Reservation {
 		status = "Reserved";
 	}
 	
-//	public Reservation(Guest guest, RoomDetails[] roomDetails, double dis, LocalDate date, LocalDate in, LocalDate out) {
-//		this.guest = guest;
-//		this.roomDetails = new ArrayList<>(Arrays.asList(roomDetails));
-//		this.discount = dis;
-//		this.bookingDate = date;
-//		this.checkInDate = in;
-//		this.checkOutDate = out;
-//		setDays();
-//		bill = new Bill(calculateRate(), numOfDays, discount);
-//		status = "Reserved";
-//	}
+	public Reservation(int id, Guest guest, List<RoomDetails> roomDetails, Bill bill, LocalDate date, LocalDate in, LocalDate out, String status) {
+		this.reservationID = id;
+		this.guest = guest;
+		this.bill = bill;
+		this.setRoomDetails(roomDetails);
+		this.bookingDate = date;
+		this.setCheckInDate(in);
+		this.setCheckOutDate(out);
+		this.status = status;
+	}
+	
+	public void setReservationID(int id) {
+		this.reservationID = id;
+	}
 
 	public int getReservationID() {
 		return reservationID;
@@ -120,15 +123,19 @@ public class Reservation {
 		this.bill = bill;
 	}
 
-	public double getDiscount() {
-		return discount;
+//	public void setDiscount(double discount) {
+//		this.discount = discount;
+//		bill.setDiscount(discount);
+//	}
+	
+	public String getStatus() {
+		return status;
 	}
 
-	public void setDiscount(double discount) {
-		this.discount = discount;
-		bill.setDiscount(discount);
+	public void setStatus(String status) {
+		this.status = status;
 	}
-	
+
 	void setDays() {
 		if(checkInDate != null && checkOutDate != null) {
 			long days = ChronoUnit.DAYS.between(checkInDate, checkOutDate);
@@ -152,10 +159,13 @@ public class Reservation {
 	}
 	
 	void setTypeOfRooms() {
+		typesOfRooms = "";
 		for(int i = 0; i < roomDetails.size(); i++) {
-			typesOfRooms += roomDetails.get(i).getRoom().getRoomType();
-			if(i != roomDetails.size() - 1)
-				typesOfRooms += " ";
+			if(!typesOfRooms.contains(roomDetails.get(i).getRoom().getRoomType())) {
+				typesOfRooms += roomDetails.get(i).getRoom().getRoomType();
+				if(i != roomDetails.size() - 1)
+					typesOfRooms += " ";
+			}
 		}
 	}
 	

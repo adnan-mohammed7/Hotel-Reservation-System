@@ -2,20 +2,21 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controllers.AvailableRoomsController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controllers.CustomerSearchController">
    <center>
-      <TableView fx:id="roomsTable" prefHeight="200.0" prefWidth="200.0" styleClass="currentBookings-table-view" stylesheets="@../styles/application.css" BorderPane.alignment="CENTER">
+      <TableView fx:id="customerTable" prefHeight="200.0" prefWidth="200.0" styleClass="currentBookings-table-view" stylesheets="@../styles/application.css" BorderPane.alignment="CENTER">
         <columns>
-          <TableColumn fx:id="roomIdCol" prefWidth="75.0" style="-fx-alignment: CENTER;" text="Room ID" />
-          <TableColumn fx:id="roomTypeCol" prefWidth="75.0" style="-fx-alignment: CENTER;" text="Room Type" />
+          <TableColumn fx:id="nameCol" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="300.0" resizable="false" style="-fx-alignment: CENTER;" text="Customer Name" />
+          <TableColumn fx:id="phoneCol" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="250.0" resizable="false" style="-fx-alignment: CENTER;" text="Phone Number" />
+            <TableColumn fx:id="emailCol" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="300.0" style="-fx-alignment: CENTER;" text="Email" />
         </columns>
          <BorderPane.margin>
             <Insets bottom="15.0" left="15.0" right="15.0" />
@@ -28,7 +29,7 @@
    <bottom>
       <HBox alignment="BOTTOM_LEFT" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Label fx:id="roomsAvailableLabel" text="Number of Available Rooms: ">
+            <Label fx:id="numOfCustomersLabel" text="Number of Customers: ">
                <font>
                   <Font size="35.0" />
                </font>
@@ -55,11 +56,13 @@
       </HBox>
    </bottom>
    <top>
-      <HBox maxWidth="1.7976931348623157E308" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <HBox alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" prefWidth="200.0" BorderPane.alignment="CENTER_RIGHT">
          <children>
-            <DatePicker fx:id="inDate" maxWidth="1.7976931348623157E308" styleClass="welcome-text-size" stylesheets="@../styles/application.css" HBox.hgrow="ALWAYS" />
-            <DatePicker fx:id="outDate" maxWidth="1.7976931348623157E308" styleClass="welcome-text-size" stylesheets="@../styles/application.css" HBox.hgrow="ALWAYS" />
-            <Button fx:id="searchBtn" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#searchAvailableRooms" styleClass="welcome-text-size" stylesheets="@../styles/application.css" text="Search" HBox.hgrow="ALWAYS" />
+            <TextField fx:id="searchBox" maxWidth="-Infinity" prefWidth="400.0" promptText="Phone Number/Customer Name" styleClass="welcome-text-size" stylesheets="@../styles/application.css" HBox.hgrow="NEVER">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </TextField>
          </children>
          <BorderPane.margin>
             <Insets left="15.0" right="15.0" top="15.0" />

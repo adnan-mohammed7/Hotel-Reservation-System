@@ -1,8 +1,13 @@
 package application.controllers;
 
+import java.sql.Date;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Observable;
 
+import application.database.Database;
 import application.models.Reservation;
 import application.models.Room;
 import application.models.RoomDetails;
@@ -10,6 +15,7 @@ import application.models.Single;
 import application.utility.Validate;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
@@ -77,40 +83,82 @@ public class ReservationDetailsController {
     @FXML
     private TableColumn<RoomDetails, String> roomTypeCol;
     
-    Room room;
-    RoomDetails selectedRoom;
+    RoomDetails roomDetails;
     ObservableList<RoomDetails> allSelectedRooms;
     Reservation reservation;
-
+    Database db;
+    List<Room> allRooms;
     
     @FXML
     void initialize() {
+    	db = new Database();
     	numOfGuest.getItems().addAll(1, 2, 3, 4);
+    	
+    	checkInDate.valueProperty().addListener(new ChangeListener<LocalDate>() {
+
+			@Override
+			public void changed(ObservableValue<? extends LocalDate> arg0, LocalDate arg1, LocalDate arg2) {
+				if (arg2 != null) {
+                    setUpdateRoomList();
+                    clearFields();
+                }
+				
+			}
+		});
+    	
+    	checkOutDate.valueProperty().addListener(new ChangeListener<LocalDate>() {
+
+			@Override
+			public void changed(ObservableValue<? extends LocalDate> arg0, LocalDate arg1, LocalDate arg2) {
+				if (arg2 != null) {
+                    setUpdateRoomList();
+                    clearFields();
+                }
+				
+			}
+		});
     	
     	numOfGuest.getSelectionModel().selectedItemProperty().addListener((obs, ov, nv)->{
     		roomType.getItems().clear();
-    		if(nv < 3) {
-    			roomType.getItems().addAll("Single Room", "Double Room", "Deluxe Room", "Pent House");
-    		}else {
-    			roomType.getItems().add("Double Room");
+    		if(nv != null) {
+    			if(nv < 3) {
+        			roomType.getItems().addAll("Single Room", "Double Room", "Deluxe Room", "Pent House");
+        		}else {
+        			roomType.getItems().add("Double Room");
+        		}
     		}
     	});
     	
     	roomType.getSelectionModel().selectedItemProperty().addListener((obs, ov, nv) ->{
-    		if(nv != null && nv.equals("Single Room")) {
-    			//Available Rooms and rateperday
-    		}else if(nv != null && nv.equals("Double Room")) {
-    			
-    		}else if(nv != null && nv.equals("Deluxe Room")) {
-    			
-    		}else if(nv != null && nv.equals("Pent House")) {
-    			
+    		availableRooms.getItems().clear();
+    		if(nv != null) {
+    			double rate = 0.0;
+    			for(Room e : allRooms) {
+        			if(nv.equals("Single Room") && e.getRoomType().equals("Single Room")) {
+        				availableRooms.getItems().add(e.getRoomID());
+        				if(rate == 0.0) {
+            				rate = e.getRate();
+            			}
+            		}else if(nv.equals("Double Room") && e.getRoomType().equals("Double Room")) {
+            			availableRooms.getItems().add(e.getRoomID());
+            			if(rate == 0.0) {
+            				rate = e.getRate();
+            			}
+            		}else if(nv.equals("Deluxe Room") && e.getRoomType().equals("Deluxe Room")) {
+            			availableRooms.getItems().add(e.getRoomID());
+            			if(rate == 0.0) {
+            				rate = e.getRate();
+            			}
+            		}else if(nv.equals("Pent House") && e.getRoomType().equals("Pent House")) {
+            			availableRooms.getItems().add(e.getRoomID());
+            			if(rate == 0.0) {
+            				rate = e.getRate();
+            			}
+            		}
+            	}
+    			ratePerDay.setText(String.format("$ %.2f", rate));
     		}
     	});
-    	
-    	room = new Single(312, 80.0);
-    	
-    	availableRooms.getItems().addAll(245, 301, 10, 312);
     	
     	allSelectedRooms = FXCollections.observableArrayList();
     	roomNumCol.setCellValueFactory(cellData -> 
@@ -125,29 +173,40 @@ public class ReservationDetailsController {
     		if (allSelectedRooms.size() > 0) {
     	        checkInDate.setDisable(true);
     	        checkOutDate.setDisable(true);
+    	        nextBtn.setDisable(false);
     	    } else {
     	        checkInDate.setDisable(false);
     	        checkOutDate.setDisable(false);
+    	        nextBtn.setDisable(true);
     	    }
+    		double total = 0.0;
+    		for(RoomDetails i : allSelectedRooms) {
+    			total += i.getRoom().getRate();
+    		}
+    		totalRatePerDay.setText(String.format("$ %.2f", total));
     	});
     	reservation = new Reservation();
+    	nextBtn.setDisable(true);
     }
     
     @FXML
     void addRoom(ActionEvent event) {
     	if(validateFields()) {
-    		selectedRoom = new RoomDetails();
-    		//room = DATABASE.GETROOM +BYID(availableRooms.getValue);
-    		selectedRoom.setRoom(room); //SET ROOM HERE
-    		selectedRoom.setNumOfGuest(numOfGuest.getValue());
-    		allSelectedRooms.add(selectedRoom);
+    		roomDetails = new RoomDetails();
+    		roomDetails.setRoom(db.getRoomByID(availableRooms.getValue()));
+    		roomDetails.setNumOfGuest(numOfGuest.getValue());
+    		allRooms.remove(roomDetails.getRoom());
+    		allSelectedRooms.add(roomDetails);
+    		clearFields();
     	}
     }
 
     @FXML
     void removeRoom(ActionEvent event) {
     	if (listView.getSelectionModel().getSelectedItem() != null) {
+    		allRooms.add(listView.getSelectionModel().getSelectedItem().getRoom());
     		allSelectedRooms.remove(listView.getSelectionModel().getSelectedItem());
+    		clearFields();
     	}else {
     		Validate.showAlert("Please select the room to be removed");
     	}
@@ -230,5 +289,64 @@ public class ReservationDetailsController {
     		return false;
     	}
     	return true;
+    }
+    
+    void clearFields() {
+    	numOfGuest.setValue(null);
+    	availableRooms.setValue(null);
+    	roomType.setValue(null);
+    	ratePerDay.setText("$ 0.00");
+    }
+    
+    void setUpdateRoomList() {
+    	if(checkInDate.getValue() != null && checkOutDate.getValue() != null) {
+    		if(allRooms != null && allRooms.size() > 0) {
+    			allRooms.clear();
+    		}
+    		allRooms = db.getAllRooms();
+    		
+        	LocalDate in = checkInDate.getValue();
+        	LocalDate out = checkOutDate.getValue();
+        	
+        	List<Reservation> exisitingReservation = db.getReservationByDate(Date.valueOf(in), Date.valueOf(out));
+        	List<RoomDetails> exisitingDetails = new ArrayList<RoomDetails>();
+        	
+        	
+        	for(Reservation e : exisitingReservation) {
+        		exisitingDetails.addAll(e.getRoomDetails());
+        	}
+        	
+        	for(RoomDetails e : exisitingDetails) {
+        		allRooms.remove(e.getRoom());
+        	}
+    	}
+    }
+    
+    void updateAvailableRoomView(String nv) {
+    	availableRooms.getItems().clear();
+		double rate = 0.0;
+		for(Room e : allRooms) {
+			if(nv.equals("Single Room") && e.getRoomType().equals("Single Room")) {
+				availableRooms.getItems().add(e.getRoomID());
+				if(rate == 0.0) {
+    				rate = e.getRate();
+    			}
+    		}else if(nv.equals("Double Room") && e.getRoomType().equals("Double Room")) {
+    			availableRooms.getItems().add(e.getRoomID());
+    			if(rate == 0.0) {
+    				rate = e.getRate();
+    			}
+    		}else if(nv.equals("Deluxe Room") && e.getRoomType().equals("Deluxe Room")) {
+    			availableRooms.getItems().add(e.getRoomID());
+    			if(rate == 0.0) {
+    				rate = e.getRate();
+    			}
+    		}else if(nv.equals("Pent House") && e.getRoomType().equals("Pent House")) {
+    			availableRooms.getItems().add(e.getRoomID());
+    			if(rate == 0.0) {
+    				rate = e.getRate();
+    			}
+    		}
+		}
     }
 }
