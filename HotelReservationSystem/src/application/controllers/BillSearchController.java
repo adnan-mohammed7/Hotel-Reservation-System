@@ -1,7 +1,6 @@
 package application.controllers;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 import application.database.Database;
@@ -108,6 +107,7 @@ public class BillSearchController {
         	stage.setScene(scene);
         	stage.setMaximized(true);
         	stage.setResizable(false);
+        	stage.setTitle("Hotel Marma");
             stage.show();
     	}catch(Exception e) {
     		e.printStackTrace();

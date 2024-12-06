@@ -105,6 +105,7 @@ public class AdminPageController {
     	stage.setScene(scene);
     	stage.setMaximized(true);
     	stage.setResizable(false);
+    	stage.setTitle("Hotel Marma");
         stage.show();
     }
 }

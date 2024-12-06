@@ -52,6 +52,7 @@ public class CustomerDetailsController {
         	stage.setScene(scene);
         	stage.setMaximized(true);
         	stage.setResizable(false);
+        	stage.setTitle("Hotel Marma");
             stage.show();
     	}catch(Exception e) {
     		e.printStackTrace();
@@ -71,6 +72,7 @@ public class CustomerDetailsController {
         	stage.setScene(scene);
         	stage.setMaximized(true);
         	stage.setResizable(false);
+        	stage.setTitle("Hotel Marma");
             stage.show();
     	}catch(Exception e) {
     		e.printStackTrace();

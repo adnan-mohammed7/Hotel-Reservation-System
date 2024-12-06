@@ -16,6 +16,7 @@ public class Main extends Application {
 			primaryStage.setMaximized(true);
 			primaryStage.setResizable(false);
 			primaryStage.setScene(scene);
+			primaryStage.setTitle("Hotel Marma");
 			primaryStage.show();
 		} catch(Exception e) {
 			e.printStackTrace();

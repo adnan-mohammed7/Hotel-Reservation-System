@@ -9,4 +9,5 @@ module HotelReservationSystem {
 	exports application.controllers to javafx.fxml;
 	opens application.controllers to javafx.fxml;
 	opens application.models to javafx.base;
+	exports application.models to application.controllers;
 }

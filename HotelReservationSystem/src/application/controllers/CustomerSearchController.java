@@ -1,11 +1,7 @@
 package application.controllers;
 
-import java.util.List;
-
 import application.database.Database;
 import application.models.Guest;
-import application.models.Reservation;
-import application.utility.Validate;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -80,6 +76,7 @@ public class CustomerSearchController {
     	        	stage.setScene(scene);
     	        	stage.setMaximized(true);
     	        	stage.setResizable(false);
+    	        	stage.setTitle("Hotel Marma");
     	            stage.show();
     	    	}catch(Exception e) {
     	    		e.printStackTrace();
@@ -100,6 +97,7 @@ public class CustomerSearchController {
         	stage.setScene(scene);
         	stage.setMaximized(true);
         	stage.setResizable(false);
+        	stage.setTitle("Hotel Marma");
             stage.show();
     	}catch(Exception e) {
     		e.printStackTrace();

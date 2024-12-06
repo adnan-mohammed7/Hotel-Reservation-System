@@ -16,12 +16,9 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 import java.time.LocalDate;
-import java.util.Arrays;
-import java.util.List;
 
 import application.database.Database;
 import application.models.Reservation;
-import application.models.RoomDetails;
 
 public class CurrentBookingsController {
 
@@ -89,6 +86,7 @@ public class CurrentBookingsController {
     	        	stage.setScene(scene);
     	        	stage.setMaximized(true);
     	        	stage.setResizable(false);
+    	        	stage.setTitle("Hotel Marma");
     	            stage.show();
     	    	}catch(Exception e) {
     	    		e.printStackTrace();
@@ -107,6 +105,7 @@ public class CurrentBookingsController {
         	stage.setScene(scene);
         	stage.setMaximized(true);
         	stage.setResizable(false);
+        	stage.setTitle("Hotel Marma");
             stage.show();
     	}catch(Exception e) {
     		e.printStackTrace();

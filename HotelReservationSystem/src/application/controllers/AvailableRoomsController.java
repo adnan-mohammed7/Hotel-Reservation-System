@@ -10,8 +10,6 @@ import application.models.Reservation;
 import application.models.Room;
 import application.models.RoomDetails;
 import application.utility.Validate;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -76,6 +74,7 @@ public class AvailableRoomsController {
         	stage.setScene(scene);
         	stage.setMaximized(true);
         	stage.setResizable(false);
+        	stage.setTitle("Hotel Marma");
             stage.show();
     	}catch(Exception e) {
     		e.printStackTrace();

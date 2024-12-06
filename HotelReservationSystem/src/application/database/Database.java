@@ -20,7 +20,6 @@ import application.models.Reservation;
 import application.models.Room;
 import application.models.RoomDetails;
 import application.models.Single;
-import javafx.collections.ObservableList;
 
 public class Database {
 	private static final String DB_URL = "jdbc:mysql://localhost:3306/project?useSSL=false";
@@ -282,7 +281,6 @@ public class Database {
 	
 	
 	public void addReservation(Reservation reservation) {
-		Integer guestId = reservation.getGuest().getGuestID();
 		addGuest(reservation);
 		addBill(reservation);
 		try (Connection conn = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);

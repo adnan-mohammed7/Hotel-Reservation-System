@@ -3,15 +3,12 @@ package application.controllers;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.Observable;
 
 import application.database.Database;
 import application.models.Reservation;
 import application.models.Room;
 import application.models.RoomDetails;
-import application.models.Single;
 import application.utility.Validate;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.value.ChangeListener;
@@ -25,7 +22,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.DialogPane;
@@ -250,6 +246,7 @@ public class ReservationDetailsController {
 	    	stage.setScene(scene);
 	    	stage.setMaximized(true);
 	    	stage.setResizable(false);
+	    	stage.setTitle("Hotel Marma");
 	        stage.show();
     		
     	} catch(Exception e) {
@@ -269,6 +266,7 @@ public class ReservationDetailsController {
 	    	stage.setScene(scene);
 	    	stage.setMaximized(true);
 	    	stage.setResizable(false);
+	    	stage.setTitle("Hotel Marma");
 	        stage.show();
     		
     	} catch(Exception e) {

@@ -1,12 +1,7 @@
 package application.controllers;
 
-import java.util.List;
-
 import application.database.Database;
-import application.models.Bill;
-import application.models.Guest;
 import application.models.Reservation;
-import application.models.Room;
 import application.models.RoomDetails;
 import application.utility.Validate;
 import javafx.event.ActionEvent;
@@ -63,6 +58,7 @@ public class ReservationConfirmationController {
 	    	stage.setScene(scene);
 	    	stage.setMaximized(true);
 	    	stage.setResizable(false);
+	    	stage.setTitle("Hotel Marma");
 	        stage.show();
 	        String suites = "";
 	        
@@ -92,6 +88,7 @@ public class ReservationConfirmationController {
 	    	stage.setScene(scene);
 	    	stage.setMaximized(true);
 	    	stage.setResizable(false);
+	    	stage.setTitle("Hotel Marma");
 	        stage.show();
     		
     	} catch(Exception e) {
