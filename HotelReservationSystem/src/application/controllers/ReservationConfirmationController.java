@@ -8,6 +8,7 @@ import application.models.Guest;
 import application.models.Reservation;
 import application.models.Room;
 import application.models.RoomDetails;
+import application.utility.Validate;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -63,7 +64,17 @@ public class ReservationConfirmationController {
 	    	stage.setMaximized(true);
 	    	stage.setResizable(false);
 	        stage.show();
-    		
+	        String suites = "";
+	        
+	        for(RoomDetails e : reservation.getRoomDetails()) {
+	        	suites += String.valueOf(e.getRoom().getRoomID());
+	        	suites += " ";
+	        }
+	        
+	        Validate.showBookingConfirmation("Booking Confirmed for " + reservation.getGuest().getFirstName() +
+	        		reservation.getGuest().getLastName() + "\n" + "Check-In Date: " + reservation.getCheckInDate() + 
+	        		"\nCheck-Out Date: " + reservation.getCheckOutDate() + "\n" +
+	        		"Suites: " + suites);
     	} catch(Exception e) {
     		e.printStackTrace();
     	}

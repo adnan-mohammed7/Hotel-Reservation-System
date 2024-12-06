@@ -40,6 +40,9 @@ public class ReservationDetailsController {
 
 	@FXML
     private Button addBtn;
+	
+	@FXML
+    private Button cancelBtn;
 
     @FXML
     private ChoiceBox<Integer> availableRooms;
@@ -254,6 +257,26 @@ public class ReservationDetailsController {
     	}
     }
     
+    @FXML
+    void cancelBooking(ActionEvent event) {
+    	try {
+    		FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/views/Main.fxml"));
+    		BorderPane root = loader.load();
+    		
+    		Scene scene = new Scene(root);
+    		Stage stage = (Stage) (cancelBtn.getScene().getWindow());
+    		stage.close();
+	    	stage.setScene(scene);
+	    	stage.setMaximized(true);
+	    	stage.setResizable(false);
+	        stage.show();
+    		
+    	} catch(Exception e) {
+    		e.printStackTrace();
+    	}
+    }
+
+    
     boolean validateFields() {
     	if(checkInDate.getValue() == null) {
     		Validate.showAlert("Please select a valid check-in date");
@@ -313,7 +336,9 @@ public class ReservationDetailsController {
         	
         	
         	for(Reservation e : exisitingReservation) {
-        		exisitingDetails.addAll(e.getRoomDetails());
+        		if(e.getStatus().equals("Reserved")) {
+        			exisitingDetails.addAll(e.getRoomDetails());
+        		}
         	}
         	
         	for(RoomDetails e : exisitingDetails) {

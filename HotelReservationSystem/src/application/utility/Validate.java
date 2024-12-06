@@ -42,4 +42,17 @@ public class Validate {
 		}
 		return false;
 	}
+    
+    public static void showBookingConfirmation(String msg) {
+		Alert alert = new Alert(Alert.AlertType.INFORMATION);
+		alert.setTitle("Successfull");
+		alert.setHeaderText(null);
+		alert.setContentText(msg);
+		DialogPane dialog = alert.getDialogPane();
+		dialog.setPrefSize(500, 240);
+		dialog.setStyle("-fx-font-size: 20px");
+		dialog.lookupButton(ButtonType.OK).setStyle("-fx-font-size: 20px");
+		
+		alert.show();
+	}
 }

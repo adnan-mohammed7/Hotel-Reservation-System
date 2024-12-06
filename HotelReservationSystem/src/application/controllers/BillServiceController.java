@@ -6,11 +6,14 @@ import application.database.Database;
 import application.models.Reservation;
 import application.models.RoomDetails;
 import application.utility.Validate;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
@@ -55,6 +58,15 @@ public class BillServiceController {
     
     @FXML
     private TextField status;
+    
+    @FXML
+    private TextField amount;
+    
+    @FXML
+    private TextField numOfDays;
+    
+    @FXML
+    private ChoiceBox<Integer> roomNumbers;
     
     Reservation reservation;
     double discountPercentage;
@@ -119,11 +131,21 @@ public class BillServiceController {
     			reservation.getGuest().getLastName()));
     	numOfRooms.setText(String.format("%d", reservation.getNumOfRooms()));
     	typesOfRooms.setText(reservation.getTypesOfRooms());
+    	numOfDays.setText(String.format("%d", reservation.getNumOfDays()));
     	ratePerNight.setText(String.format("$ %.2f", reservation.getBill().getRatePerNight()));
+    	amount.setText(String.format("$ %.2f", reservation.getBill().getTotalAmount()));
     	discount.setText(String.format("%.2f", reservation.getBill().getDiscount()));
     	discountedAmount.setText(String.format("$ %.2f", reservation.getBill().getAmountAfterDiscount()));
     	totalAmount.setText(String.format("$ %.2f", reservation.getBill().getAmountAfterTax()));
     	status.setText(reservation.getStatus());
+    	
+    	ObservableList<Integer> roomsBooked = FXCollections.observableArrayList();
+    	for(RoomDetails e : reservation.getRoomDetails()) {
+    		roomsBooked.add(e.getRoom().getRoomID());
+    	}
+    	
+    	roomNumbers.setItems(roomsBooked);
+    	roomNumbers.setValue(roomsBooked.get(0));
     }
     
     boolean validateFields() {

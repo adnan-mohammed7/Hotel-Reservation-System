@@ -147,6 +147,11 @@
                         <Font size="45.0" />
                      </font>
                   </Button>
+                  <Button fx:id="cancelBtn" mnemonicParsing="false" onAction="#cancelBooking" prefHeight="80.0" prefWidth="200.0" text="Cancel">
+                     <font>
+                        <Font size="45.0" />
+                     </font>
+                  </Button>
                </children>
                <padding>
                   <Insets left="5.0" />

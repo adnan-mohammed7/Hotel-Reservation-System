@@ -103,7 +103,9 @@ public class AvailableRoomsController {
         	
         	
         	for(Reservation e : exisitingReservation) {
-        		exisitingDetails.addAll(e.getRoomDetails());
+        		if(e.getStatus().equals("Reserved")) {
+        			exisitingDetails.addAll(e.getRoomDetails());
+        		}
         	}
         	
         	for(RoomDetails e : exisitingDetails) {

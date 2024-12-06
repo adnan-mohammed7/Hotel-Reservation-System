@@ -1,5 +1,6 @@
 package application.controllers;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,6 +31,12 @@ public class BillSearchController {
 
     @FXML
     private TableColumn<Reservation, String> customerNameCol;
+    
+    @FXML
+    private TableColumn<Reservation, LocalDate> inDateCol;
+    
+    @FXML
+    private TableColumn<Reservation, LocalDate> outDateCol;
 
     @FXML
     private Button mainMenuBtn;
@@ -63,6 +70,8 @@ public class BillSearchController {
     	new SimpleObjectProperty<>(cellData.getValue().getGuest().getFirstName() + 
     			" " + cellData.getValue().getGuest().getLastName()));
     	statusCol.setCellValueFactory(new PropertyValueFactory<Reservation, String>("status"));
+    	inDateCol.setCellValueFactory(new PropertyValueFactory<Reservation, LocalDate>("checkInDate"));
+    	outDateCol.setCellValueFactory(new PropertyValueFactory<Reservation, LocalDate>("checkOutDate"));
     	bookingsTable.setItems(customerReservation);
     	
     	bookingsTable.setOnMouseClicked(event -> {

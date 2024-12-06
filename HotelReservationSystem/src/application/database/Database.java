@@ -48,11 +48,12 @@ public class Database {
 	
 	private static final String RESERVATIONS_INSERT_QRY = "INSERT INTO reservations (guestID, numOfRooms, numOfDays, typesOfRooms, bookingDate, checkInDate, checkOutDate, status, billID) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 	private static final String RESERVATIONS_GET_ALL_QRY = "SELECT * FROM reservations";
+	private static final String RESERVATIONS_GET_ALL_CURRENT_BOOKINGS_QRY = "SELECT * FROM reservations WHERE status = 'Reserved'";
 	private static final String RESERVATIONS_GET_BY_DATE_QRY = "SELECT * FROM reservations WHERE" +
             "(checkInDate <= ? AND checkOutDate > ?) OR " +
             "(checkInDate < ? AND checkOutDate >= ?) OR " +
             "(checkInDate >= ? AND checkOutDate <= ?)";
-	
+
 	private static final String RESERVATIONS_UPDATE_STATUS_QRY = "UPDATE reservations SET status = ? WHERE reservationID = ?";
 	
 	public List<AdminUsers> getAdmins() {
@@ -311,6 +312,30 @@ public class Database {
 		List<Reservation> result = new ArrayList<Reservation>();
 		try (Connection conn = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
 			     PreparedStatement ps = conn.prepareStatement(RESERVATIONS_GET_ALL_QRY)) {
+
+		    ResultSet rs = ps.executeQuery();
+
+		    while (rs.next()) {
+		        result.add(new Reservation(rs.getInt("reservationID"),
+		        		getGuestById(rs.getInt("guestID")),
+		        		getRoomDetailByReservationId(rs.getInt("reservationID")),
+		        		getBillById(rs.getInt("billID")),
+		        		(rs.getDate("bookingDate")).toLocalDate(),
+		        		(rs.getDate("checkInDate")).toLocalDate(),
+		        		(rs.getDate("checkOutDate")).toLocalDate(),
+		        		rs.getString("status")
+		        		));
+		    }
+		} catch (SQLException ex) {
+		    ex.printStackTrace();
+		}
+		return result;
+	}
+	
+	public List<Reservation> getAllCurrentReservations(){
+		List<Reservation> result = new ArrayList<Reservation>();
+		try (Connection conn = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
+			     PreparedStatement ps = conn.prepareStatement(RESERVATIONS_GET_ALL_CURRENT_BOOKINGS_QRY)) {
 
 		    ResultSet rs = ps.executeQuery();
 

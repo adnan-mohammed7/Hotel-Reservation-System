@@ -38,6 +38,7 @@ public class Bill {
 		this.ratePerNight = ratePerNight;
 	}
 	public double getTotalAmount() {
+		calculateTotalAmount();
 		return totalAmount;
 	}
 	public void setTotalAmount(double totalAmount) {
@@ -51,11 +52,10 @@ public class Bill {
 		calculate();
 	}
 	public double getAmountAfterDiscount() {
-		if(discount > 0.0) {
+		if(discount != 0.0) {
 			return amountAfterDiscount;
-		}else {
-			return totalAmount;
 		}
+		return getTotalAmount();
 	}
 	public void setAmountAfterDiscount(double amountAfterDiscount) {
 		this.amountAfterDiscount = amountAfterDiscount;

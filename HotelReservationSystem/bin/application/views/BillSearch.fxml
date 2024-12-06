@@ -14,9 +14,11 @@
    <center>
       <TableView fx:id="bookingsTable" prefHeight="200.0" prefWidth="200.0" styleClass="currentBookings-table-view" stylesheets="@../styles/application.css" BorderPane.alignment="CENTER">
         <columns>
-          <TableColumn fx:id="bookingIdCol" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="300.0" resizable="false" style="-fx-alignment: CENTER;" text="Booking ID" />
+          <TableColumn fx:id="bookingIdCol" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="250.0" resizable="false" style="-fx-alignment: CENTER;" text="Booking ID" />
           <TableColumn fx:id="customerNameCol" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="300.0" style="-fx-alignment: CENTER;" text="Customer Name" />
-            <TableColumn fx:id="statusCol" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="300.0" resizable="false" style="-fx-alignment: CENTER;" text="Status" />
+            <TableColumn fx:id="inDateCol" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="250.0" resizable="false" style="-fx-alignment: CENTER;" text="Check-In Date" />
+            <TableColumn fx:id="outDateCol" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="250.0" resizable="false" style="-fx-alignment: CENTER;" text="Check-Out Date" />
+            <TableColumn fx:id="statusCol" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="250.0" resizable="false" style="-fx-alignment: CENTER;" text="Status" />
         </columns>
          <BorderPane.margin>
             <Insets bottom="15.0" left="15.0" right="15.0" />

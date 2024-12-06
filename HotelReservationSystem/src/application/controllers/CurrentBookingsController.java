@@ -60,7 +60,7 @@ public class CurrentBookingsController {
     @FXML
     void initialize() {
     	db = new Database();
-    	ObservableList<Reservation> allReservations = FXCollections.observableArrayList(db.getAllReservations());
+    	ObservableList<Reservation> allReservations = FXCollections.observableArrayList(db.getAllCurrentReservations());
     	bookingNumCol.setCellValueFactory(new PropertyValueFactory<Reservation, Integer>("reservationID"));
     	customerNameCol.setCellValueFactory(cellData -> 
         new SimpleObjectProperty<>(cellData.getValue().getGuest().getFirstName() + 
