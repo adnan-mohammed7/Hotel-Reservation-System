@@ -22,7 +22,7 @@ import application.models.RoomDetails;
 import application.models.Single;
 
 public class Database {
-	private static final String DB_URL = "jdbc:mysql://localhost:3306/project?useSSL=false";
+	private static final String DB_URL = "jdbc:mysql://localhost:3306/project?allowPublicKeyRetrieval=true&useSSL=false";
 	private static final String DB_USERNAME = "Adnan";
 	private static final String DB_PASSWORD = "Seneca@123";
 	
