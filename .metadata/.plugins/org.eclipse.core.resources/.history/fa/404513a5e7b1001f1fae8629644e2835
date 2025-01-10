@@ -1,0 +1,121 @@
+package application.controllers;
+
+import java.util.List;
+
+import application.models.Bill;
+import application.models.Guest;
+import application.models.Reservation;
+import application.models.Room;
+import application.models.RoomDetails;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
+
+public class ReservationConfirmationController {
+
+    @FXML
+    private Button confirmBtn;
+
+    @FXML
+    private TextField guestName;
+
+    @FXML
+    private TextField inDate;
+
+    @FXML
+    private TextField numOfRooms;
+
+    @FXML
+    private TextField outDate;
+
+    @FXML
+    private TextField total;
+
+    @FXML
+    private TextField totalAfterTax;
+    
+    private Reservation reservation;
+    
+    @FXML
+    void initialize() {
+    	
+    }
+
+    @FXML
+    void confirmBooking(ActionEvent event) {
+    	System.out.println("=== Reservation Details ===");
+        
+        // Print basic reservation details
+        System.out.println("Reservation ID: " + reservation.getReservationID());
+        System.out.println("Status: " + reservation.getStatus90);
+        System.out.println("Booking Date: " + (reservation.getBookingDate() != null ? reservation.getBookingDate() : "Not Set"));
+        System.out.println("Check-In Date: " + (reservation.getCheckInDate() != null ? reservation.getCheckInDate() : "Not Set"));
+        System.out.println("Check-Out Date: " + (reservation.getCheckOutDate() != null ? reservation.getCheckOutDate() : "Not Set"));
+        System.out.println("Number of Days: " + reservation.getNumOfDays());
+        System.out.println("Number of Rooms: " + reservation.getNumOfRooms());
+        System.out.println("Types of Rooms: " + (reservation.getTypesOfRooms() != null ? reservation.getTypesOfRooms() : "Not Set"));
+
+        // Print guest details
+        Guest guest = reservation.getGuest();
+        if (guest != null) {
+            System.out.println("--- Guest Details ---");
+            System.out.println("Guest ID: " + guest.getGuestID());
+            System.out.println("Name: " + guest.getTitle() + " " + guest.getFirstName() + " " + guest.getLastName());
+            System.out.println("Address: " + guest.getAddress());
+            System.out.println("Phone: " + guest.getPhone());
+            System.out.println("Email: " + guest.getEmail());
+        } else {
+            System.out.println("Guest: Not Set");
+        }
+
+        // Print room details
+        List<RoomDetails> roomDetailsList = reservation.getRoomDetails();
+        if (roomDetailsList != null && !roomDetailsList.isEmpty()) {
+            System.out.println("--- Room Details ---");
+            for (int i = 0; i < roomDetailsList.size(); i++) {
+                RoomDetails roomDetails = roomDetailsList.get(i);
+                Room room = roomDetails.getRoom();
+                System.out.println("Room " + (i + 1) + ":");
+                if (room != null) {
+                    System.out.println("  Room ID: " + room.getRoomID());
+                    System.out.println("  Room Type: " + room.getRoomType());
+                    System.out.println("  Rate: $" + room.getRate());
+                } else {
+                    System.out.println("  Room: Not Set");
+                }
+                System.out.println("  Number of Guests: " + roomDetails.getNumOfGuest());
+            }
+        } else {
+            System.out.println("Room Details: Not Set or Empty");
+        }
+
+        // Print bill details
+        Bill bill = reservation.getBill();
+        if (bill != null) {
+            System.out.println("--- Bill Details ---");
+            System.out.println("Bill ID: " + bill.getBillID());
+            System.out.println("Rate Per Night: $" + bill.getRatePerNight());
+            System.out.println("Total Amount: $" + bill.getTotalAmount());
+            System.out.println("Discount: " + bill.getDiscount() + "%");
+            System.out.println("Amount After Discount: $" + bill.getAmountAfterDiscount());
+            System.out.println("Amount After Tax: $" + bill.getAmountAfterTax());
+        } else {
+            System.out.println("Bill: Not Set");
+        }
+
+        System.out.println("============================");
+    }
+    }
+    
+    public void setReservation(Reservation res) {
+    	reservation = res;
+    	guestName.setText(res.getGuest().getFirstName()+ " " + res.getGuest().getLastName());
+    	numOfRooms.setText(String.format("%d", res.getNumOfRooms()));
+    	inDate.setText(res.getCheckInDate().toString());
+    	outDate.setText(res.getCheckOutDate().toString());
+    	total.setText(String.format("%.2f", res.getBill().getAmountAfterDiscount()));
+    	totalAfterTax.setText(String.format("%.2f", res.getBill().getAmountAfterTax()));
+    }
+
+}

@@ -68,7 +68,7 @@ public class ReservationConfirmationController {
 	        }
 	        
 	        Validate.showBookingConfirmation("Booking Confirmed for " + reservation.getGuest().getFirstName() +
-	        		reservation.getGuest().getLastName() + "\n" + "Check-In Date: " + reservation.getCheckInDate() + 
+	        		" " + reservation.getGuest().getLastName() + "\n" + "Check-In Date: " + reservation.getCheckInDate() + 
 	        		"\nCheck-Out Date: " + reservation.getCheckOutDate() + "\n" +
 	        		"Suites: " + suites);
     	} catch(Exception e) {

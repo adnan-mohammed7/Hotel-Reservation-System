@@ -1,0 +1,207 @@
+package application.controllers;
+
+import java.util.List;
+
+import application.models.Reservation;
+import application.models.RoomDetails;
+import application.utility.Validate;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.BorderPane;
+import javafx.stage.Stage;
+
+public class BillServiceController {
+
+	@FXML
+    private TextField bookingId;
+
+    @FXML
+    private Button checkoutBtn;
+
+    @FXML
+    private Button cancelBtn;
+    
+    @FXML
+    private Button discountBtn;
+
+    @FXML
+    private TextField discount;
+
+    @FXML
+    private TextField guestName;
+
+    @FXML
+    private Button mainMenuBtn;
+
+    @FXML
+    private TextField numOfRooms;
+
+    @FXML
+    private TextField ratePerNight;
+
+    @FXML
+    private TextField discountedAmount;
+    
+    @FXML
+    private TextField totalAmount;
+
+    @FXML
+    private TextField typesOfRooms;
+    
+    @FXML
+    private TextField status;
+    
+    Reservation reservation;
+    double discountPercentage;
+    
+    @FXML
+    void initialize(){
+    	
+    }
+    
+    @FXML
+    void navigateToMainMenu(ActionEvent event) {
+    	try {
+    		BorderPane root = (BorderPane)FXMLLoader.load(getClass().getResource("/application/views/AdminPage.fxml"));
+    		Scene scene = new Scene(root);
+    		Stage stage = (Stage) (mainMenuBtn.getScene().getWindow());
+    		stage.close();
+        	stage.setScene(scene);
+        	stage.setMaximized(true);
+        	stage.setResizable(false);
+            stage.show();
+    	}catch(Exception e) {
+    		e.printStackTrace();
+    	}
+    }
+    
+    @FXML
+    void checkoutBooking(ActionEvent event) {
+    	reservation.setStatus("CHECKED-OUT");
+    	printReservationDetails(reservation);
+    	setFields();
+    }
+
+    @FXML
+    void cancelBooking(ActionEvent event) {
+    	reservation.setStatus("CANCELLED");
+    	printReservationDetails(reservation);
+    	setFields();
+    }
+    
+    @FXML
+    void addDiscount(ActionEvent event) {
+    	if(validateFields()) {
+    		reservation.getBill().setDiscount(discountPercentage);
+    		printReservationDetails(reservation);
+    		setFields();
+    	}
+    }
+    
+    public void setReservation(Reservation reservation) {
+    	this.reservation = reservation;
+    	setFields();
+    }
+    
+    void setFields() {
+    	bookingId.setText(String.format("%d", reservation.getReservationID()));
+    	guestName.setText(String.format("%s %s", reservation.getGuest().getFirstName(),
+    			reservation.getGuest().getLastName()));
+    	numOfRooms.setText(String.format("%d", reservation.getNumOfRooms()));
+    	typesOfRooms.setText(reservation.getTypesOfRooms());
+    	ratePerNight.setText(String.format("$ %.2f", reservation.getBill().getRatePerNight()));
+    	discount.setText(String.format("%.2f", reservation.getBill().getDiscount()));
+    	discountedAmount.setText(String.format("$ %.2f", reservation.getBill().getAmountAfterDiscount()));
+    	totalAmount.setText(String.format("$ %.2f", reservation.getBill().getAmountAfterTax()));
+    }
+    
+    boolean validateFields() {
+    	if (discount.getText().isEmpty()) {
+    	    Validate.showAlert("Discount field cannot be empty");
+    	    return false;
+    	} 
+
+    	try {
+    	    double discountValue = Double.parseDouble(discount.getText());
+    	    if (discountValue < 0.0 || discountValue > 25.00) {
+    	        Validate.showAlert("Please enter a discount between 0.0 and 25.00");
+    	        return false;
+    	    }
+    	} catch (NumberFormatException e) {
+    	    Validate.showAlert("Please enter a valid numeric value for the discount");
+    	    return false;
+    	}
+    	discountPercentage = Double.valueOf(discount.getText().toString());
+    	return true;
+    }
+    
+    public void printReservationDetails(Reservation reservation) {
+        if (reservation == null) {
+            System.out.println("Reservation object is null.");
+            return;
+        }
+
+        System.out.println("Reservation Details:");
+        System.out.println("--------------------");
+        System.out.println("Reservation ID: " + reservation.getReservationID());
+
+        // Guest Details
+        if (reservation.getGuest() != null) {
+            System.out.println("Guest Details:");
+            System.out.println("  Guest ID: " + reservation.getGuest().getGuestID());
+            System.out.println("  Title: " + reservation.getGuest().getTitle());
+            System.out.println("  First Name: " + reservation.getGuest().getFirstName());
+            System.out.println("  Last Name: " + reservation.getGuest().getLastName());
+            System.out.println("  Address: " + reservation.getGuest().getAddress());
+            System.out.println("  Phone: " + reservation.getGuest().getPhone());
+            System.out.println("  Email: " + reservation.getGuest().getEmail());
+        } else {
+            System.out.println("Guest Details: null");
+        }
+
+        // Room Details
+        System.out.println("Room Details:");
+        List<RoomDetails> roomDetails = reservation.getRoomDetails();
+        if (roomDetails != null && !roomDetails.isEmpty()) {
+            for (int i = 0; i < roomDetails.size(); i++) {
+                System.out.println("  Room " + (i + 1) + ":");
+                System.out.println("    Room ID: " + roomDetails.get(i).getRoom().getRoomID());
+                System.out.println("    Room Type: " + roomDetails.get(i).getRoom().getRoomType());
+                System.out.println("    Rate: " + roomDetails.get(i).getRoom().getRate());
+                System.out.println("    Number of Guests: " + roomDetails.get(i).getNumOfGuest());
+            }
+        } else {
+            System.out.println("  No rooms booked.");
+        }
+
+        // Other Reservation Details
+        System.out.println("Number of Rooms: " + reservation.getNumOfRooms());
+        System.out.println("Number of Days: " + reservation.getNumOfDays());
+        System.out.println("Types of Rooms: " + reservation.getTypesOfRooms());
+        System.out.println("Booking Date: " + reservation.getBookingDate());
+        System.out.println("Check-In Date: " + reservation.getCheckInDate());
+        System.out.println("Check-Out Date: " + reservation.getCheckOutDate());
+        System.out.println("Reservation Status: " + reservation.getStatus());
+
+        // Bill Details
+        if (reservation.getBill() != null) {
+            System.out.println("Bill Details:");
+            System.out.println("  Bill ID: " + reservation.getBill().getBillID());
+            System.out.println("  Rate Per Night: " + reservation.getBill().getRatePerNight());
+            System.out.println("  Total Amount: " + reservation.getBill().getTotalAmount());
+            System.out.println("  Discount: " + reservation.getBill().getDiscount());
+            System.out.println("  Amount After Discount: " + reservation.getBill().getAmountAfterDiscount());
+            System.out.println("  Amount After Tax: " + reservation.getBill().getAmountAfterTax());
+            System.out.println("  Number of Days: " + reservation.getBill().getNumOfDays());
+        } else {
+            System.out.println("Bill Details: null");
+        }
+
+        System.out.println("--------------------");
+    }
+
+}

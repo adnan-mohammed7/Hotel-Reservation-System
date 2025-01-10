@@ -1,7 +1,0 @@
-package application.models;
-
-import application.models.Room;
-
-public class Single extends Room{
-
-}

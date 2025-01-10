@@ -1,7 +1,0 @@
-package application.models;
-
-public abstract class Room {
-	int roomID;
-	String roomType;
-	double rate;
-}

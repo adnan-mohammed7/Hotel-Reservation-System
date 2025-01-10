@@ -1,0 +1,125 @@
+private static final String DB_URL = "jdbc:mysql://localhost:3306/project?useSSL=false";
+private static final String DB_USERNAME = "Adnan";
+private static final String DB_PASSWORD = "Seneca@123";
+
+CREATE TABLE AdminUsers (
+    adminID INT AUTO_INCREMENT PRIMARY KEY,
+    userName VARCHAR(50) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL
+);
+INSERT INTO adminusers(username,password) VALUES ("Adnan", "Seneca");
+INSERT INTO adminusers(username,password) VALUES ("Saad", "York");
+SELECT * FROM adminusers;
+
+CREATE TABLE Rooms (
+    roomID INT PRIMARY KEY,
+    roomType ENUM('Single Room', 'Double Room', 'Deluxe Room', 'Pent House') NOT NULL,
+    rate DECIMAL(10, 2) NOT NULL
+);
+INSERT INTO Rooms (roomID, roomType, rate) VALUES
+-- Floor 1
+(101, 'Single Room', 100.00), (102, 'Single Room', 100.00), (103, 'Single Room', 100.00), (104, 'Single Room', 100.00),
+(105, 'Double Room', 150.00), (106, 'Double Room', 150.00), (107, 'Double Room', 150.00), (108, 'Double Room', 150.00),
+(109, 'Deluxe Room', 200.00), (110, 'Deluxe Room', 200.00),
+-- Floor 2
+(201, 'Single Room', 100.00), (202, 'Single Room', 100.00), (203, 'Single Room', 100.00), (204, 'Single Room', 100.00),
+(205, 'Double Room', 150.00), (206, 'Double Room', 150.00), (207, 'Double Room', 150.00), (208, 'Double Room', 150.00),
+(209, 'Deluxe Room', 200.00), (210, 'Deluxe Room', 200.00),
+-- Floor 3
+(301, 'Single Room', 100.00), (302, 'Single Room', 100.00), (303, 'Single Room', 100.00), (304, 'Single Room', 100.00),
+(305, 'Double Room', 150.00), (306, 'Double Room', 150.00), (307, 'Double Room', 150.00), (308, 'Double Room', 150.00),
+(309, 'Deluxe Room', 200.00), (310, 'Deluxe Room', 200.00),
+-- Floor 4
+(401, 'Single Room', 100.00), (402, 'Single Room', 100.00), (403, 'Single Room', 100.00), (404, 'Single Room', 100.00),
+(405, 'Double Room', 150.00), (406, 'Double Room', 150.00), (407, 'Double Room', 150.00), (408, 'Double Room', 150.00),
+(409, 'Deluxe Room', 200.00), (410, 'Deluxe Room', 200.00),
+-- Floor 5
+(501, 'Single Room', 100.00), (502, 'Single Room', 100.00), (503, 'Single Room', 100.00), (504, 'Single Room', 100.00),
+(505, 'Double Room', 150.00), (506, 'Double Room', 150.00), (507, 'Double Room', 150.00), (508, 'Double Room', 150.00),
+(509, 'Deluxe Room', 200.00), (510, 'Deluxe Room', 200.00),
+-- Floor 6
+(601, 'Single Room', 100.00), (602, 'Single Room', 100.00), (603, 'Single Room', 100.00), (604, 'Single Room', 100.00),
+(605, 'Double Room', 150.00), (606, 'Double Room', 150.00), (607, 'Double Room', 150.00), (608, 'Double Room', 150.00),
+(609, 'Deluxe Room', 200.00), (610, 'Deluxe Room', 200.00),
+-- Floor 7
+(701, 'Single Room', 100.00), (702, 'Single Room', 100.00), (703, 'Single Room', 100.00), (704, 'Single Room', 100.00),
+(705, 'Double Room', 150.00), (706, 'Double Room', 150.00), (707, 'Double Room', 150.00), (708, 'Double Room', 150.00),
+(709, 'Deluxe Room', 200.00), (710, 'Deluxe Room', 200.00),
+-- Floor 8
+(801, 'Single Room', 100.00), (802, 'Single Room', 100.00), (803, 'Single Room', 100.00), (804, 'Single Room', 100.00),
+(805, 'Double Room', 150.00), (806, 'Double Room', 150.00), (807, 'Double Room', 150.00), (808, 'Double Room', 150.00),
+(809, 'Deluxe Room', 200.00), (810, 'Deluxe Room', 200.00),
+-- Floor 9
+(901, 'Single Room', 100.00), (902, 'Single Room', 100.00), (903, 'Single Room', 100.00), (904, 'Single Room', 100.00),
+(905, 'Double Room', 150.00), (906, 'Double Room', 150.00), (907, 'Double Room', 150.00), (908, 'Double Room', 150.00),
+(909, 'Deluxe Room', 200.00), (910, 'Deluxe Room', 200.00);
+
+INSERT INTO Rooms (roomID, roomType, rate) VALUES
+(1001, 'Pent House', 500.00),
+(1002, 'Pent House', 500.00),
+(1003, 'Pent House', 500.00),
+(1004, 'Pent House', 500.00),
+(1005, 'Pent House', 500.00),
+(1006, 'Pent House', 500.00);
+SELECT * FROM rooms;
+SELECT * FROM rooms WHERE roomID = ?;
+
+CREATE TABLE Guests (
+    guestID INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(10),
+    firstName VARCHAR(50) NOT NULL,
+    lastName VARCHAR(50) NOT NULL,
+    address VARCHAR(150),
+    phone BIGINT NOT NULL UNIQUE,
+    email VARCHAR(255) NOT NULL UNIQUE
+);
+INSERT INTO guests (title, firstName, lastName, address, phone, email) VALUES (?, ?, ?, ?, ?, ?)
+SELECT * FROM guests WHERE guestID = ?
+SELECT * FROM guests WHERE firstName LIKE ? OR lastName LIKE ? OR phone LIKE ?
+SELECT * FROM guests WHERE phone = ?
+SELECT * FROM guests WHERE email = ?
+
+CREATE TABLE Bills (
+    billID INT AUTO_INCREMENT PRIMARY KEY,
+    ratePerNight DECIMAL(10, 2) NOT NULL,
+    totalAmount DECIMAL(10, 2) NOT NULL,
+    discount DECIMAL(5, 2) DEFAULT 0.00,
+    amountAfterDiscount DECIMAL(10, 2),
+    amountAfterTax DECIMAL(10, 2),
+    numOfDays INT NOT NULL
+);
+INSERT INTO bills (ratePerNight, totalAmount, discount, amountAfterDiscount, amountAfterTax, numOfDays) VALUES (?, ?, ?, ?, ?, ?)
+SELECT * FROM bills WHERE billID = ?
+UPDATE bills SET ratePerNight = ?, totalAmount = ?, discount = ?, amountAfterDiscount = ?, amountAfterTax = ?, numOfDays = ? WHERE billID = ?
+
+
+CREATE TABLE RoomDetails (
+    roomDetailID INT AUTO_INCREMENT PRIMARY KEY,
+    roomID INT NOT NULL,
+    reservationID INT NOT NULL,
+    numOfGuest INT NOT NULL,
+    FOREIGN KEY (roomID) REFERENCES Rooms(roomID),
+    FOREIGN KEY (reservationID) REFERENCES Reservations(reservationID)
+);
+INSERT INTO reservationdetails (roomID, reservationID, numOfGuest) VALUES (?, ?, ?)
+SELECT * FROM reservationdetails WHERE reservationID = ?
+
+CREATE TABLE Reservations (
+    reservationID INT AUTO_INCREMENT PRIMARY KEY,
+    guestID INT NOT NULL,
+    numOfRooms INT NOT NULL,
+    numOfDays INT NOT NULL,
+    typesOfRooms VARCHAR(255),
+    bookingDate DATE NOT NULL,
+    checkInDate DATE NOT NULL,
+    checkOutDate DATE NOT NULL,
+    status VARCHAR(20) DEFAULT 'Reserved',
+    billID INT,
+    FOREIGN KEY (guestID) REFERENCES Guests(guestID),
+    FOREIGN KEY (billID) REFERENCES Bills(billID)
+);
+INSERT INTO reservations (guestID, numOfRooms, numOfDays, typesOfRooms, bookingDate, checkInDate, checkOutDate, status, billID) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+SELECT * FROM reservations
+SELECT * FROM reservations WHERE status = 'Reserved
+SELECT * FROM reservations WHERE (checkInDate <= ? AND checkOutDate > ?) OR (checkInDate < ? AND checkOutDate >= ?) OR (checkInDate >= ? AND checkOutDate <= ?)
+UPDATE reservations SET status = ? WHERE reservationID = ?

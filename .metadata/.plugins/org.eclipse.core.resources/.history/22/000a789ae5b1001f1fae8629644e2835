@@ -1,0 +1,54 @@
+package application.controllers;
+
+import application.models.Reservation;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
+
+public class ReservationConfirmationController {
+
+    @FXML
+    private Button confirmBtn;
+
+    @FXML
+    private TextField guestName;
+
+    @FXML
+    private TextField inDate;
+
+    @FXML
+    private TextField numOfRooms;
+
+    @FXML
+    private TextField outDate;
+
+    @FXML
+    private TextField total;
+
+    @FXML
+    private TextField totalAfterTax;
+    
+    private Reservation reservation;
+    
+    @FXML
+    void initialize() {
+    	
+    }
+
+    @FXML
+    void confirmBooking(ActionEvent event) {
+
+    }
+    
+    public void setReservation(Reservation res) {
+    	reservation = res;
+    	guestName.setText(res.getGuest().getFirstName()+ " " + res.getGuest().getLastName());
+    	numOfRooms.setText(String.format("%d", res.getNumOfRooms()));
+    	inDate.setText(res.getCheckInDate().toString());
+    	outDate.setText(res.getCheckOutDate().toString());
+    	total.setText(String.format("%.2f", res.getBill().getTotalAmount()));
+    	totalAfterTax.setText(String.format("%.2f", res.getBill().getAmountAfterTax()));
+    }
+
+}

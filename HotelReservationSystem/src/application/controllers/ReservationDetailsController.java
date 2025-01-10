@@ -215,7 +215,7 @@ public class ReservationDetailsController {
     void showRules(ActionEvent event) {
     	String rules = "Single room: Max 2 person's.\n"
     			+ "Double room: Max 4 person's.\n"
-    			+ "Deluxe and Pent rooms: Max 2 person's\n";
+    			+ "Deluxe room and Pent House: Max 2 person's\n";
     	
     	Alert alert = new Alert(Alert.AlertType.INFORMATION);
 		alert.setTitle("Rules");
