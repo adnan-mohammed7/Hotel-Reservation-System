@@ -72,7 +72,37 @@ java --module-path "path-to-javafx-lib" --add-modules javafx.controls,javafx.fxm
 
 ---
 
-## 📷 Screenshots *(Add UI Images Here)*
+## 📷 Screenshots
+
+![Screenshot (79)](https://github.com/user-attachments/assets/78e508db-f596-47f7-9b5a-be57cf70c332)
+
+![Screenshot (80)](https://github.com/user-attachments/assets/b88df6e9-d2e9-4ec0-9206-4d552feb7dd1)
+
+![Screenshot (81)](https://github.com/user-attachments/assets/0a4de919-b915-4d87-a797-a670a2b484a9)
+
+![Screenshot (82)](https://github.com/user-attachments/assets/1312d97f-b909-4bd4-9762-9a037ed2a086)
+
+![Screenshot (83)](https://github.com/user-attachments/assets/54f473ca-cf77-42f2-aca6-df275d03369b)
+
+![Screenshot (84)](https://github.com/user-attachments/assets/cbe1866c-66a1-46a9-bd7f-2a770168b8e0)
+
+![Screenshot (85)](https://github.com/user-attachments/assets/e158369f-30fe-4446-9b3e-751d269b2972)
+
+![Screenshot (86)](https://github.com/user-attachments/assets/22ef59bc-78fe-45a4-987a-cf436de0a94c)
+
+![Screenshot (87)](https://github.com/user-attachments/assets/05b6af74-0d2b-42a8-a7f2-8ab6c7a942a2)
+
+![Screenshot (93)](https://github.com/user-attachments/assets/5ce56cb8-27eb-4e9c-a0ac-6042b081ccd2)
+
+![Screenshot (92)](https://github.com/user-attachments/assets/84059312-0e89-4f7d-8ed4-471c94a7a458)
+
+![Screenshot (91)](https://github.com/user-attachments/assets/5a404912-49ca-4b0b-b19b-7a84cf7f1e1c)
+
+![Screenshot (90)](https://github.com/user-attachments/assets/0e3e038c-0e41-42a2-b713-deabadc45d67)
+
+![Screenshot (89)](https://github.com/user-attachments/assets/88d8d849-c807-4161-9a7e-af0d6124f5f3)
+
+![Screenshot (88)](https://github.com/user-attachments/assets/d09c8311-00b8-470b-8ed1-cef57bc4b524)
 
 ---
 
